@@ -1,0 +1,102 @@
+@page "/"
+@using Assigment_1.Data
+@using Models
+@inject IAdultService AdultService
+@inject NavigationManager NavigationManager;
+
+<h1>Add New Adult</h1>
+<p>@ErrorMessage</p>
+
+<label for="fname">First name:</label><br>
+<input type="text" @bind="@FirstName" @oninput="@((e) => { FirstName = (string) e.Value; })"><br>
+<label for="lname">Last name:</label><br>
+<input type="text" @bind="@LastName" @oninput="@((e) => { LastName = (string) e.Value; })"><br>
+<label for="lname">HairColor:</label><br>
+<input type="text" @bind="@HairColor" @oninput="@((e) => { HairColor = (string) e.Value; })"><br>
+<label for="lname">EyeColor:</label><br>
+<input type="text" @bind="@EyeColor" @oninput="@((e) => { EyeColor = (string) e.Value; })"><br>
+<label for="lname">Age:</label><br>
+<input type="text" @bind="@Age" @oninput="@((e) => { Age = (string) e.Value; })"><br>
+<label for="lname">Weight:</label><br>
+<input type="text" @bind="@Weight" @oninput="@((e) => { Weight = (string) e.Value; })"><br>
+<label for="lname">Height:</label><br>
+<input type="text" @bind="@Height" @oninput="@((e) => { Height = (string) e.Value; })"><br>
+<label for="lname">Sex:</label><br>
+<input type="text" @bind="@Sex" @oninput="@((e) => { Sex = (string) e.Value; })"><br>
+<label for="lname">JobTitle:</label><br>
+<input type="text" @bind="@JobTitle" @oninput="@((e) => { JobTitle = (string) e.Value; })"><br>
+<label for="lname">Salary:</label><br>
+<input type="text" @bind="@Salary" @oninput="@((e) => { Salary = (string) e.Value; })"><br>
+<input type="submit" value="Submit" @onclick="Edit">
+
+@code {
+    public string ErrorMessage { get; set; }
+    public IList<Adult> Adults { get; set; }
+
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string HairColor { get; set; }
+    public string EyeColor { get; set; }
+    public string Age { get; set; }
+    public string Weight { get; set; }
+    public string Height { get; set; }
+    public string Sex { get; set; }
+    public string JobTitle { get; set; }
+    public string Salary { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Adults = AdultService.AdultsList;
+    }
+
+    public void Edit()
+    {
+        if (Check(FirstName) || Check(LastName) || Check(Age) || Check(HairColor) || Check(EyeColor) || Check(Weight) || Check(Height))
+        {
+            ErrorMessage = "Please fill all fields";
+        }
+        else
+        {
+            Adult adult = new Adult
+            {
+                Id = Adults.Count,
+                FirstName = FirstName,
+                LastName = LastName,
+                Age = Int32.Parse(Age),
+                Height = Int32.Parse(Height),
+                Weight = float.Parse(Weight),
+                Sex = Sex,
+                EyeColor = EyeColor,
+                HairColor = HairColor,
+            };
+            if (!Check(JobTitle))
+            {
+                Job job = new Job
+                {
+                    JobTitle = JobTitle,
+                    Salary = Int32.Parse(Salary)
+                };
+                adult.JobTitle = job;
+            }
+            else
+            {
+                Job job = new Job
+                {
+                    JobTitle = "Unemployed",
+                    Salary = 0
+                };
+                adult.JobTitle = job;
+            }
+
+            Adults.Add(adult);
+            AdultService.Save();
+            NavigationManager.NavigateTo("/fetchdata");
+        }
+    }
+
+    public bool Check(string s)
+    {
+        return (s == null || s == String.Empty) ? true : false;
+    }
+
+}

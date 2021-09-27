@@ -1,0 +1,55 @@
+﻿@page "/AdultPage"
+@page "/AdultPage/{Id:int}" 
+@using Assigment_1.Data
+@using Models
+@inject IAdultService AdultService
+@inject NavigationManager NavigationManager;
+<h3>Adult Info Page</h3>
+
+<label for="fname">Id: @Adult.Id</label><br>
+<label for="fname">First name:</label><br>
+<input type="text" @bind="@Adult.FirstName" @oninput="@((e) => { Adult.FirstName = (string) e.Value; })"><br>
+<label for="lname">Last name:</label><br>
+<input type="text" @bind="@Adult.LastName" @oninput="@((e) => { Adult.LastName = (string) e.Value; })"><br>
+<label for="lname">HairColor:</label><br>
+<input type="text" @bind="@Adult.HairColor" @oninput="@((e) => { Adult.HairColor = (string) e.Value; })"><br>
+<label for="lname">EyeColor:</label><br>
+<input type="text" @bind="@Adult.EyeColor" @oninput="@((e) => { Adult.EyeColor = (string) e.Value; })"><br>
+<label for="lname">Age:</label><br>
+<input type="text" @bind="@Adult.Age" @oninput="@((e) => { Adult.Age = (int) e.Value; })"><br>
+<label for="lname">Weight:</label><br>
+<input type="text" @bind="@Adult.Weight" @oninput="@((e) => { Adult.Weight = (float) e.Value; })"><br>
+<label for="lname">Height:</label><br>
+<input type="text" @bind="@Adult.Height" @oninput="@((e) => { Adult.Height = (int) e.Value; })"><br>
+<label for="lname">Sex:</label><br>
+<input type="text" @bind="@Adult.Sex" @oninput="@((e) => { Adult.Sex = (string) e.Value; })"><br>
+<label for="lname">JobTitle:</label><br>
+<input type="text" @bind="@Adult.JobTitle.JobTitle" @oninput="@((e) => { Adult.JobTitle.JobTitle = (string) e.Value; })"><br>
+<label for="lname">Salary:</label><br>
+<input type="text" @bind="@Adult.JobTitle.Salary" @oninput="@((e) => { Adult.JobTitle.Salary = (int) e.Value; })"><br>
+<input type="submit" value="Submit" @onclick="Edit">
+
+
+
+@code {
+
+    [Parameter]
+    public int Id { get; set; }
+    public Adult Adult { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (Id != 0)
+        {
+            Adult = AdultService.AdultsList.First(p => p.Id == Id);
+        }
+    }
+
+    public void Edit()
+    {
+        Console.WriteLine(Adult.FirstName);
+        AdultService.Save();
+        NavigationManager.NavigateTo("/fetchdata");
+    }
+
+}

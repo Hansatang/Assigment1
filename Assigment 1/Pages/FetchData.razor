@@ -1,0 +1,81 @@
+﻿@page "/fetchdata"
+
+@using Assigment_1.Data
+@using Models
+@inject IAdultService AdultService
+@inject NavigationManager NavigationManager;
+
+<h1>Adults List</h1>
+<div id="block_container">
+    <label for="search">Name To search:</label><br>
+    <input type="text" @bind="@SearchPhrase" @oninput="@((e) => { SearchPhrase = (string) e.Value; })"><br>
+    <input type="submit" value="Submit" @onclick="Search">
+</div>
+
+@if (Adults == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>HairColor</th>
+            <th>EyeColor</th>
+            <th>Age</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Sex</th>
+            <th>JobTitle</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var adult in Adults)
+        {
+            <tr @onclick="@(() => NavigateToComponent(adult))">
+                <td>@adult.Id</td>
+                <td>@adult.FirstName</td>
+                <td>@adult.LastName</td>
+                <td>@adult.HairColor</td>
+                <td>@adult.EyeColor</td>
+                <td>@adult.Age</td>
+                <td>@adult.Weight</td>
+                <td>@adult.Height</td>
+                <td>@adult.Sex</td>
+                <td>@adult.JobTitle.JobTitle</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+
+
+@code
+{
+
+    public string SearchPhrase;
+    public IList<Adult> Adults { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        Adults = AdultService.AdultsList;
+    }
+
+    private void NavigateToComponent(Adult p)
+    {
+        NavigationManager.NavigateTo("AdultPage/" + p.Id);
+    }
+
+    private void Search()
+    {
+        NavigationManager.NavigateTo("SearchResult/" + SearchPhrase);
+        Console.WriteLine("Hello");
+    }
+}
