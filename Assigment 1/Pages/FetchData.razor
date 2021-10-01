@@ -55,17 +55,27 @@ else
     </table>
 }
 
-
-
 @code
 {
-
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
     public string SearchPhrase;
     public IList<Adult> Adults { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        Adults = AdultService.AdultsList;
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            Console.WriteLine("1serw");
+            NavigationManager.NavigateTo($"/Login");
+        }
+        else
+        {
+            Console.WriteLine("2str");
+            Adults = AdultService.AdultsList;
+        }
     }
 
     private void NavigateToComponent(Adult p)

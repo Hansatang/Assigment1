@@ -1,5 +1,7 @@
 ﻿@page "/AdultPage"
 @page "/AdultPage/{Id:int}" 
+
+
 @using Assigment_1.Data
 @using Models
 @inject IAdultService AdultService
@@ -30,18 +32,24 @@
 <input type="submit" value="Submit" @onclick="Edit">
 
 
-
 @code {
 
     [Parameter]
     public int Id { get; set; }
+
     public Adult Adult { get; set; }
+
+
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        if (Id != 0)
         {
-            Adult = AdultService.AdultsList.First(p => p.Id == Id);
+            if (Id != 0)
+            {
+                Adult = AdultService.AdultsList.First(p => p.Id == Id);
+            }
         }
     }
 
@@ -51,5 +59,6 @@
         AdultService.Save();
         NavigationManager.NavigateTo("/fetchdata");
     }
+    
 
 }

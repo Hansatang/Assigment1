@@ -4,7 +4,7 @@
 #pragma warning disable 0649
 #pragma warning disable 0169
 
-namespace Assigment_1.Pages
+namespace LoginComponent
 {
     #line hidden
     using System;
@@ -83,22 +83,14 @@ using Assigment_1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
+#line 2 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
 using Assigment_1.Data;
 
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 6 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
-using Models;
-
-#line default
-#line hidden
-#nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/AdultPage")]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/AdultPage/{Id:int}")]
-    public partial class AdultPage : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
+    public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -106,42 +98,49 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
+#line 22 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
        
+    private string username;
+    private string password;
+    private string errorMessage;
 
-    [Parameter]
-    public int Id { get; set; }
-
-    public Adult Adult { get; set; }
-
-
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthStat { get; set; }
-
-    protected override async Task OnInitializedAsync()
+    public async Task PerformLogin()
     {
+        errorMessage = "";
+        try
         {
-            if (Id != 0)
-            {
-                Adult = AdultService.AdultsList.First(p => p.Id == Id);
-            }
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            username = "";
+            password = "";
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+            errorMessage = e.Message;
         }
     }
 
-    public void Edit()
+    public async Task PerformLogout()
     {
-        Console.WriteLine(Adult.FirstName);
-        AdultService.Save();
-        NavigationManager.NavigateTo("/fetchdata");
+        errorMessage = "";
+        username = "";
+        password = "";
+        try
+        {
+            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).Logout();
+            NavigationManager.NavigateTo("/");
+        }
+        catch (Exception e)
+        {
+        }
     }
-    
 
 
 #line default
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultService AdultService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
 #pragma warning restore 1591

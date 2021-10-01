@@ -83,14 +83,14 @@ using Assigment_1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 4 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
 using Assigment_1.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 5 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
 using Models;
 
 #line default
@@ -105,7 +105,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 61 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 62 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
  
 
     public string SearchPhrase;
@@ -113,7 +113,19 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
-        Adults = AdultService.AdultsList;
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            Console.WriteLine("1serw");
+            NavigationManager.NavigateTo($"/Login");
+        }
+        else
+        {
+            Console.WriteLine("2str");
+            Adults = AdultService.AdultsList;
+        }
+        
     }
 
     private void NavigateToComponent(Adult p)
@@ -126,6 +138,10 @@ using Models;
         NavigationManager.NavigateTo("SearchResult/" + SearchPhrase);
         Console.WriteLine("Hello");
     }
+    
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
+
 
 #line default
 #line hidden
