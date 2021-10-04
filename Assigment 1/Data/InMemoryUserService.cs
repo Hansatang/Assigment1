@@ -41,5 +41,14 @@ namespace Assigment_1.Data
 
             return first;
         }
+
+        public void Save(User user)
+        {
+            if (!users.Contains(user))
+            {
+               users.Add(user); 
+            }
+            
+        }
     }
 }

@@ -98,7 +98,7 @@ using Assigment_1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 22 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
+#line 23 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
        
     private string username;
     private string password;
@@ -133,6 +133,11 @@ using Assigment_1.Data;
         catch (Exception e)
         {
         }
+    }
+
+    private void PerformRegister()
+    {
+        NavigationManager.NavigateTo("/register");
     }
 
 

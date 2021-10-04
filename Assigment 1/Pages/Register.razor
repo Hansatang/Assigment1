@@ -1,0 +1,59 @@
+﻿@page "/Register"
+@using Models
+@using Microsoft.AspNetCore.Components
+@using Assigment_1.Data
+@using System.Collections
+@inject IUserService UserService
+@inject NavigationManager NavigationManager;
+<h3>Register</h3>
+
+<label for="fname">Domain:</label><br>
+<input type="text" @bind="@User.Domain" @oninput="@((e) => { User.Domain = (string) e.Value; })"><br>
+<label for="lname">Username:</label><br>
+<input type="text" @bind="@User.UserName" @oninput="@((e) => { User.UserName = (string) e.Value; })"><br>
+<label for="lname">Password:</label><br>
+<input type="text" @bind="@User.Password" @oninput="@((e) => { User.Password = (string) e.Value; })"><br>
+<label for="lname">Security Level:</label><br>
+<select class="selectpicker" @bind="User.SecurityLevel">
+    @foreach (var item in SecurityLevels)
+    {
+        <option >@item</option>
+    }
+</select>
+<br>
+<label for="lname">Role:</label><br>
+<select class="selectpicker" @bind="User.Role">
+    @foreach (var item in Roles)
+    {
+        <option >@item</option>
+    }
+</select>
+<br>
+
+<input type="submit" value="Submit" @onclick="Save">
+
+@code {
+
+    public ArrayList SecurityLevels = new()
+    {
+        1, 2, 3, 4, 5
+    };
+
+    public ArrayList Roles = new()
+    {
+        "Student", "Teacher"
+    };
+
+    public User User = new();
+    
+    private void Save()
+    {
+        Console.WriteLine(User.Domain);
+        Console.WriteLine(User.Password);
+        Console.WriteLine(User.UserName);
+        Console.WriteLine(User.SecurityLevel);
+    //UserService.Save(User);
+    // NavigationManager.NavigateTo("/Login");
+    }
+
+}
