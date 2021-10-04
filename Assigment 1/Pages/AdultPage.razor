@@ -78,10 +78,12 @@
     {
         if (mainClass.Equals("hidden"))
         {
+            secondaryClass = "";
             mainClass = "hidden";
         }
         else
         {
+            secondaryClass = "hidden";
             mainClass = "";
         }
     }
@@ -90,6 +92,7 @@
     {
        
         AdultService.Remove(Adult.Id);
+        mainClass = "";
         NavigationManager.NavigateTo("/fetchdata");
     }
 
