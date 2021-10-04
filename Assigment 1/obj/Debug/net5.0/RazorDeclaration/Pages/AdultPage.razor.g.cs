@@ -121,10 +121,7 @@ using Models;
     protected override async Task OnInitializedAsync()
     {
         {
-            if (Id != 0)
-            {
-                Adult = AdultService.AdultsList.First(p => p.Id == Id);
-            }
+            Adult = AdultService.AdultsList.First(p => p.Id == Id);
         }
     }
 
@@ -134,7 +131,7 @@ using Models;
         AdultService.Save();
         NavigationManager.NavigateTo("/fetchdata");
     }
-    
+
 
 
 #line default

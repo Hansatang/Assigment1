@@ -66,3 +66,4 @@ C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDecla
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Security.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Security.razor.g.cs
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\users.json

@@ -1,29 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 using Models;
 
 namespace Assigment_1.Data
 {
     public class InMemoryUserService : IUserService
     {
-        private List<User> users;
+        private List<User> users { get; set; }
+        private string productsFile = "users.json";
 
         public InMemoryUserService()
         {
-            users = new[]
+            if (!File.Exists(productsFile))
             {
-                new User
-                {
-                    Domain = "via.dk", Password = "123", Role = "Teacher",
-                    SecurityLevel = 4, UserName = "123"
-                },
-                new User
-                {
-                    Domain = "hotmail.com", Password = "qwe", Role = "Student",
-                    SecurityLevel = 2, UserName = "qwe"
-                }
-            }.ToList();
+                string productsAsJson = JsonSerializer.Serialize(users);
+                File.WriteAllText(productsFile, productsAsJson);
+            }
+            else
+            {
+                string content = File.ReadAllText(productsFile);
+                users = JsonSerializer.Deserialize<List<User>>(content);
+            }
         }
 
         public User ValidateUser(string userName, string password)

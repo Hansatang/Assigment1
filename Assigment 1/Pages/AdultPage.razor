@@ -46,10 +46,7 @@
     protected override async Task OnInitializedAsync()
     {
         {
-            if (Id != 0)
-            {
-                Adult = AdultService.AdultsList.First(p => p.Id == Id);
-            }
+            Adult = AdultService.AdultsList.First(p => p.Id == Id);
         }
     }
 
@@ -59,6 +56,6 @@
         AdultService.Save();
         NavigationManager.NavigateTo("/fetchdata");
     }
-    
+
 
 }
