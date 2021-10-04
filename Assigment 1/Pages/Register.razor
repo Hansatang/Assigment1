@@ -48,12 +48,8 @@
     
     private void Save()
     {
-        Console.WriteLine(User.Domain);
-        Console.WriteLine(User.Password);
-        Console.WriteLine(User.UserName);
-        Console.WriteLine(User.SecurityLevel);
-    //UserService.Save(User);
-    // NavigationManager.NavigateTo("/Login");
+        UserService.Save(User);
+    NavigationManager.NavigateTo("/Login");
     }
 
 }
