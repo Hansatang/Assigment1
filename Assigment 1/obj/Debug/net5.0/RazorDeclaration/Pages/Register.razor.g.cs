@@ -118,26 +118,25 @@ using System.Collections;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 31 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Register.razor"
+#line 35 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Register.razor"
        
 
-    public ArrayList SecurityLevels = new ArrayList()
+    public ArrayList SecurityLevels = new()
     {
         1, 2, 3, 4, 5
     };
 
-    public User User= new User();
+    public ArrayList Roles = new()
+    {
+        "Student", "Teacher"
+    };
 
-    public string Tester;
+    public User User = new();
 
     private void Save()
     {
-        Console.WriteLine(User.Domain);
-        Console.WriteLine(User.Password);
-        Console.WriteLine(User.UserName);
-        Console.WriteLine(User.SecurityLevel);
-        //UserService.Save(User);
-       // NavigationManager.NavigateTo("/Login");
+        UserService.Save(User);
+        NavigationManager.NavigateTo("/Login");
     }
 
 

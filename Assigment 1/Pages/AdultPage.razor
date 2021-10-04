@@ -8,31 +8,47 @@
 @inject NavigationManager NavigationManager;
 <h3>Adult Info Page</h3>
 
-<label for="fname">Id: @Adult.Id</label><br>
-<label for="fname">First name:</label><br>
-<input type="text" @bind="@Adult.FirstName" @oninput="@((e) => { Adult.FirstName = (string) e.Value; })"><br>
-<label for="lname">Last name:</label><br>
-<input type="text" @bind="@Adult.LastName" @oninput="@((e) => { Adult.LastName = (string) e.Value; })"><br>
-<label for="lname">HairColor:</label><br>
-<input type="text" @bind="@Adult.HairColor" @oninput="@((e) => { Adult.HairColor = (string) e.Value; })"><br>
-<label for="lname">EyeColor:</label><br>
-<input type="text" @bind="@Adult.EyeColor" @oninput="@((e) => { Adult.EyeColor = (string) e.Value; })"><br>
-<label for="lname">Age:</label><br>
-<input type="text" @bind="@Adult.Age" @oninput="@((e) => { Adult.Age = (int) e.Value; })"><br>
-<label for="lname">Weight:</label><br>
-<input type="text" @bind="@Adult.Weight" @oninput="@((e) => { Adult.Weight = (float) e.Value; })"><br>
-<label for="lname">Height:</label><br>
-<input type="text" @bind="@Adult.Height" @oninput="@((e) => { Adult.Height = (int) e.Value; })"><br>
-<label for="lname">Sex:</label><br>
-<input type="text" @bind="@Adult.Sex" @oninput="@((e) => { Adult.Sex = (string) e.Value; })"><br>
-<label for="lname">JobTitle:</label><br>
-<input type="text" @bind="@Adult.JobTitle.JobTitle" @oninput="@((e) => { Adult.JobTitle.JobTitle = (string) e.Value; })"><br>
-<label for="lname">Salary:</label><br>
-<input type="text" @bind="@Adult.JobTitle.Salary" @oninput="@((e) => { Adult.JobTitle.Salary = (int) e.Value; })"><br>
-<input type="submit" value="Submit" @onclick="Edit">
 
+<div class="@mainClass">
+    <label for="fname">First name:</label><br>
+    <input type="text" @bind="@Adult.FirstName" @oninput="@((e) => { Adult.FirstName = (string) e.Value; })"><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" @bind="@Adult.LastName" @oninput="@((e) => { Adult.LastName = (string) e.Value; })"><br>
+    <label for="lname">HairColor:</label><br>
+    <input type="text" @bind="@Adult.HairColor" @oninput="@((e) => { Adult.HairColor = (string) e.Value; })"><br>
+    <label for="lname">EyeColor:</label><br>
+    <input type="text" @bind="@Adult.EyeColor" @oninput="@((e) => { Adult.EyeColor = (string) e.Value; })"><br>
+    <label for="lname">Age:</label><br>
+    <input type="text" @bind="@Adult.Age" @oninput="@((e) => { Adult.Age = (int) e.Value; })"><br>
+    <label for="lname">Weight:</label><br>
+    <input type="text" @bind="@Adult.Weight" @oninput="@((e) => { Adult.Weight = (float) e.Value; })"><br>
+    <label for="lname">Height:</label><br>
+    <input type="text" @bind="@Adult.Height" @oninput="@((e) => { Adult.Height = (int) e.Value; })"><br>
+    <label for="lname">Sex:</label><br>
+    <input type="text" @bind="@Adult.Sex" @oninput="@((e) => { Adult.Sex = (string) e.Value; })"><br>
+    <label for="lname">JobTitle:</label><br>
+    <input type="text" @bind="@Adult.JobTitle.JobTitle" @oninput="@((e) => { Adult.JobTitle.JobTitle = (string) e.Value; })"><br>
+    <label for="lname">Salary:</label><br>
+    <input type="text" @bind="@Adult.JobTitle.Salary" @oninput="@((e) => { Adult.JobTitle.Salary = (int) e.Value; })"><br>
+    <input type="submit" value="Submit edited" @onclick="Edit">
+    <div >
+        <input type="submit" value="Remove" @onclick="Remove">
+    </div>
+</div>
+<div class="@secondaryClass">
+    <div >
+        <input type="submit" value="Confirm" @onclick="Confirm">
+    </div>
+    <div >
+        <input type="submit" value="GoBack" @onclick="Remove">
+    </div>
+</div>
 
 @code {
+
+
+    string mainClass { get; set; }
+    string secondaryClass { get; set; }
 
     [Parameter]
     public int Id { get; set; }
@@ -57,5 +73,24 @@
         NavigationManager.NavigateTo("/fetchdata");
     }
 
+
+    private void Remove()
+    {
+        if (mainClass.Equals("hidden"))
+        {
+            mainClass = "hidden";
+        }
+        else
+        {
+            mainClass = "";
+        }
+    }
+
+    private void Confirm()
+    {
+       
+        AdultService.Remove(Adult.Id);
+        NavigationManager.NavigateTo("/fetchdata");
+    }
 
 }

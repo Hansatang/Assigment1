@@ -106,7 +106,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 59 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+#line 58 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
  
     [Parameter]
     public string Id { get; set; }

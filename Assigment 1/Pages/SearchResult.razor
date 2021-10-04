@@ -21,7 +21,6 @@ else
     <table class="table">
         <thead>
         <tr>
-            <th>Id</th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>HairColor</th>
@@ -37,7 +36,7 @@ else
         @foreach (var adult in AdultsSearched)
         {
             <tr @onclick="@(() => NavigateToComponent(adult))">
-                <td>@adult.Id</td>
+              
                 <td>@adult.FirstName</td>
                 <td>@adult.LastName</td>
                 <td>@adult.HairColor</td>

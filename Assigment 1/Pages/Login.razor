@@ -12,8 +12,9 @@
         <div>
             <label>Password</label> <input type="password" placeholder="password" @bind-value="password"/>
         </div>
-        <div style="color:red">@errorMessage</div> <a href="" @onclick="PerformLogin"> Login </a>
-        <div style="color:green">@errorMessage</div> <a href="" @onclick="PerformRegister"> Register </a>
+        <div style="color:red">@errorMessage</div>
+        <a href="" @onclick="PerformLogin"> Login </a>
+        <a href="" @onclick="PerformRegister"> Register </a>
     </NotAuthorized>
     <Authorized>
         <a href="" @onclick="PerformLogout"> Log out, @context.User.Identity.Name </a>
@@ -33,7 +34,7 @@
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/fetchData");
         }
         catch (Exception e)
         {

@@ -98,7 +98,7 @@ using Assigment_1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 23 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
+#line 24 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
        
     private string username;
     private string password;
@@ -112,7 +112,7 @@ using Assigment_1.Data;
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/");
+            NavigationManager.NavigateTo("/fetchData");
         }
         catch (Exception e)
         {

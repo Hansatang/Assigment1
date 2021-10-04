@@ -35,6 +35,17 @@ namespace Assigment_1.Data
             File.WriteAllText(productsFile, productsAsJson);
         }
 
+        public void Remove(int adultId)
+        {
+            foreach (var var in AdultsList)
+            {
+                if (var.Id.Equals(adultId))
+                {
+                    AdultsList.Remove(var);
+                }
+            }
+        }
+
         // public void Connect()
         // {
         //     TcpClient tcpClient = new TcpClient("127.0.0.1", 2910);

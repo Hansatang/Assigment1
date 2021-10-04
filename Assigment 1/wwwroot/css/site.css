@@ -58,3 +58,7 @@ tr:hover {
     justify-content: center;
 }
 
+.hidden{
+    display: none;
+}
+

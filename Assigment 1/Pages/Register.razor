@@ -45,11 +45,11 @@
     };
 
     public User User = new();
-    
+
     private void Save()
     {
         UserService.Save(User);
-    NavigationManager.NavigateTo("/Login");
+        NavigationManager.NavigateTo("/Login");
     }
 
 }

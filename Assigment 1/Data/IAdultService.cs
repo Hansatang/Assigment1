@@ -8,5 +8,6 @@ namespace Assigment_1.Data
         public IList<Adult> AdultsList { get; }
 
         public void Save();
+        void Remove(int adultId);
     }
 }
