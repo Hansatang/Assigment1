@@ -39,8 +39,8 @@
     <div >
         <input type="submit" value="Confirm" @onclick="Confirm">
     </div>
-    <div >
-        <input type="submit" value="GoBack" @onclick="Remove">
+    <div>
+        //<input type="submit" value="GoBack" @onclick="Remove">
     </div>
 </div>
 
@@ -48,7 +48,7 @@
 
 
     string mainClass { get; set; }
-    string secondaryClass { get; set; }
+    string secondaryClass   { get; set; }
 
     [Parameter]
     public int Id { get; set; }
@@ -61,6 +61,8 @@
 
     protected override async Task OnInitializedAsync()
     {
+        secondaryClass = "hidden";
+        mainClass = "";
         {
             Adult = AdultService.AdultsList.First(p => p.Id == Id);
         }
@@ -76,7 +78,8 @@
 
     private void Remove()
     {
-        if (mainClass.Equals("hidden"))
+        Console.WriteLine(mainClass+"sasad");
+        if (!mainClass.Equals("hidden"))
         {
             secondaryClass = "";
             mainClass = "hidden";

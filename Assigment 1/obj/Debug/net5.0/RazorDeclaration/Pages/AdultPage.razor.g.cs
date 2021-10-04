@@ -106,13 +106,13 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 40 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
+#line 47 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
        
 
 
     string mainClass { get; set; }
-    string secondaryClass { get; set; }
-    
+    string secondaryClass   { get; set; }
+
     [Parameter]
     public int Id { get; set; }
 
@@ -124,6 +124,8 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
+        secondaryClass = "hidden";
+        mainClass = "";
         {
             Adult = AdultService.AdultsList.First(p => p.Id == Id);
         }
@@ -139,7 +141,25 @@ using Models;
 
     private void Remove()
     {
-        mainClass = "hidden";
+        Console.WriteLine(mainClass+"sasad");
+        if (!mainClass.Equals("hidden"))
+        {
+            secondaryClass = "";
+            mainClass = "hidden";
+        }
+        else
+        {
+            secondaryClass = "hidden";
+            mainClass = "";
+        }
+    }
+
+    private void Confirm()
+    {
+       
+        AdultService.Remove(Adult.Id);
+        mainClass = "";
+        NavigationManager.NavigateTo("/fetchdata");
     }
 
 

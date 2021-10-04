@@ -10,7 +10,7 @@ namespace Assigment_1.Data
 {
     public class AdultService : IAdultService
     {
-        public IList<Adult> AdultsList { get; private set; }
+        public IList<Adult> AdultsList { get;  set; }
         private string productsFile = "adults.json";
 
         public AdultService()
@@ -42,8 +42,10 @@ namespace Assigment_1.Data
                 if (var.Id.Equals(adultId))
                 {
                     AdultsList.Remove(var);
+                    break;
                 }
             }
+            Save();
         }
 
         // public void Connect()
