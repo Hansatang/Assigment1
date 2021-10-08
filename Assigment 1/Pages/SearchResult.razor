@@ -13,6 +13,7 @@
 @inject NavigationManager NavigationManager;
 
 <a href="fetchdata">Adults List</a>
+<button @onclick="Generate"></button>
 
 @if (AdultsSearched == null)
 {
@@ -78,6 +79,7 @@ else
             }
         }
         CreatePie();
+        PopulatePie();
     }
 
     private void NavigateToComponent(Adult p)
@@ -85,9 +87,7 @@ else
         NavigationManager.NavigateTo("AdultPage/" + p.Id);
     }
     
-    
-    private void CreatePie()
-    {
+    private void CreatePie(){
         _config = new PieConfig
         {
             Options = new PieOptions
@@ -105,7 +105,10 @@ else
         {
             _config.Data.Labels.Add(color);
         }
-
+    }
+    
+    private void PopulatePie()
+    {
         int male = 0;
         int female = 0;
         foreach (var adult in AdultsSearched)
@@ -129,5 +132,12 @@ else
             }
         };
         _config.Data.Datasets.Add(dataset);
+    }
+
+    private void Generate()
+    {
+        _config.Data.Datasets.Clear();
+      PopulatePie();
+     
     }
 }

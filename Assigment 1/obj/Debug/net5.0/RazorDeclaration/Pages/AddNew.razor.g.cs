@@ -83,50 +83,21 @@ using Assigment_1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+#line 2 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
 using Assigment_1.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
-using ChartJs.Blazor;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 8 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
-using ChartJs.Blazor.Common;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 9 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
-using ChartJs.Blazor.PieChart;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 10 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
-using ChartJs.Blazor.Util;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 11 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
 using Models;
 
 #line default
 #line hidden
 #nullable disable
-    [Microsoft.AspNetCore.Components.RouteAttribute("/SearchResult")]
-    [Microsoft.AspNetCore.Components.RouteAttribute("/SearchResult/{Id}")]
-    public partial class SearchResult : Microsoft.AspNetCore.Components.ComponentBase
+    [Microsoft.AspNetCore.Components.RouteAttribute("/AddNew")]
+    public partial class AddNew : Microsoft.AspNetCore.Components.ComponentBase
     {
         #pragma warning disable 1998
         protected override void BuildRenderTree(Microsoft.AspNetCore.Components.Rendering.RenderTreeBuilder __builder)
@@ -134,86 +105,77 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 64 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
- 
-    [Parameter]
-    public string Id { get; set; }
+#line 62 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
+       
+    public string ErrorMessage { get; set; }
     public IList<Adult> Adults { get; set; }
-    private PieConfig _config;
-    public IList<Adult> AdultsSearched = new List<Adult>();
+
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+    public string HairColor { get; set; }
+    public string EyeColor { get; set; }
+    public string Age { get; set; }
+    public string Weight { get; set; }
+    public string Height { get; set; }
+    public string Sex { get; set; }
+    public string JobTitle { get; set; }
+    public string Salary { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         Adults = AdultService.AdultsList;
-        foreach (Adult adult in Adults)
-        {
-            if (adult.FirstName.Contains(Id) || adult.LastName.Contains(Id))
-            {
-                AdultsSearched.Add(adult);
-            }
-        }
-        CreatePie();
-        PopulatePie();
     }
 
-    private void NavigateToComponent(Adult p)
+    public void Edit()
     {
-        NavigationManager.NavigateTo("AdultPage/" + p.Id);
-    }
-    
-    private void CreatePie(){
-        _config = new PieConfig
+        if (Check(FirstName) || Check(LastName) || Check(Age) || Check(HairColor) || Check(EyeColor) || Check(Weight) || Check(Height))
         {
-            Options = new PieOptions
+            ErrorMessage = "Please fill all fields";
+        }
+        else
+        {
+            Adult adult = new Adult
             {
-                Responsive = true,
-                Title = new OptionsTitle
+                Id = Adults.Count,
+                FirstName = FirstName,
+                LastName = LastName,
+                Age = Int32.Parse(Age),
+                Height = Int32.Parse(Height),
+                Weight = float.Parse(Weight),
+                Sex = Sex,
+                EyeColor = EyeColor,
+                HairColor = HairColor,
+            };
+            if (!Check(JobTitle))
+            {
+                Job job = new Job
                 {
-                    Display = true,
-                    Text = "Male to Female Ratio"
-                }
-            }
-        };
-
-        foreach (string color in new[] {"Male", "Female"})
-        {
-            _config.Data.Labels.Add(color);
-        }
-    }
-    
-    private void PopulatePie()
-    {
-        int male = 0;
-        int female = 0;
-        foreach (var adult in AdultsSearched)
-        {
-            if (adult.Sex.Equals("M"))
-            {
-                male += 1;
+                    JobTitle = JobTitle,
+                    Salary = Int32.Parse(Salary)
+                };
+                adult.JobTitle = job;
             }
             else
             {
-                female += 1;
+                Job job = new Job
+                {
+                    JobTitle = "Unemployed",
+                    Salary = 0
+                };
+                adult.JobTitle = job;
             }
+
+            Adults.Add(adult);
+            AdultService.Save();
+            NavigationManager.NavigateTo("/fetchdata");
         }
-
-        PieDataset<int> dataset = new PieDataset<int>(new[] {male, female})
-        {
-            BackgroundColor = new[]
-            {
-                ColorUtil.ColorHexString(255, 99, 132),
-                ColorUtil.ColorHexString(255, 205, 86),
-            }
-        };
-        _config.Data.Datasets.Add(dataset);
     }
 
-    private void Generate()
+    public bool Check(string s)
     {
-        _config.Data.Datasets.Clear();
-      PopulatePie();
-     
+        return (s == null || s == String.Empty) ? true : false;
     }
+
 
 #line default
 #line hidden
