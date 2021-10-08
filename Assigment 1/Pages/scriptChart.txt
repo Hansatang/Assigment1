@@ -1,0 +1,69 @@
+﻿ function genPie() {
+        Highcharts.visualize = function (table, options) {
+            // the categories
+            options.xAxis.categories = [];
+            $('tbody th', table).each(function (i) {
+                options.xAxis.categories.push(this.innerHTML);
+            });
+    
+            // the data series
+            options.series = [{
+                data: []    
+            }];
+            $('tr', table).each(function (i) {
+                var tr = this;
+                if(i > 0) {
+                    options.series[0].data.push([]); // add empty array for a point
+                    $('th, td', tr).each(function (j) {
+                            console.log(this.innerHTML);
+                            if (j == 0) {
+                                options.series[0].data[i-1].push(this.innerHTML);
+                            } else { // add values
+                                options.series[0].data[i-1].push(parseFloat(this.innerHTML));
+                            }
+                    });
+                }
+            });
+    
+            var chart = new Highcharts.Chart(options);
+        }
+    
+        var table = document.getElementById('datatable'),
+            options = {
+                chart: {
+                    renderTo: 'container',
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Generated Pie Chart'
+                },
+                xAxis: {},
+                yAxis: {
+                    title: {
+                        text: 'Projects'
+                    }
+                },
+                tooltip: {
+                    formatter: function () {
+                        return '<b>' + this.series.name + '</b><br/>' + this.y + ' ' + this.point.name;
+                    }
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            color: '#000000',
+                            connectorColor: '#000000',
+                            formatter: function () {
+                                return '<b>' + this.point.name + '</b>: ' + this.percentage + ' %';
+                            }
+                        }
+                    }
+                }
+            };
+    
+        Highcharts.visualize(table, options);
+    
+    }

@@ -140,3 +140,5 @@ C:\Users\esben\RiderProjects\Assigment1\Assigment 1\obj\Debug\net5.0\ref\Assigme
 C:\Users\esben\RiderProjects\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.pdb
 C:\Users\esben\RiderProjects\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.genruntimeconfig.cache
 C:\Users\esben\RiderProjects\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.csproj.CopyComplete
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\ChartJs.Blazor.dll
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\Newtonsoft.Json.dll
