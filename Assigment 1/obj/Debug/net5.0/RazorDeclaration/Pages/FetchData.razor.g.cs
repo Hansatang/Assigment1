@@ -139,6 +139,7 @@ using Models;
     protected Task<AuthenticationState> AuthStat { get; set; }
 
     public string SearchPhrase;
+    private PieConfig _config;
     public IList<Adult> Adults { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -154,8 +155,9 @@ using Models;
         {
             Console.WriteLine("2str");
             Adults = AdultService.AdultsList;
+            CreatePie();
         }
-        CreatePie();
+        
     }
 
     private void NavigateToComponent(Adult p)
@@ -170,7 +172,7 @@ using Models;
     }
 
 
-    private PieConfig _config;
+ 
 
     private void CreatePie()
     {

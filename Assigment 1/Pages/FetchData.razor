@@ -64,6 +64,7 @@ else
     protected Task<AuthenticationState> AuthStat { get; set; }
 
     public string SearchPhrase;
+    private PieConfig _config;
     public IList<Adult> Adults { get; set; }
 
     protected override async Task OnInitializedAsync()
@@ -79,8 +80,9 @@ else
         {
             Console.WriteLine("2str");
             Adults = AdultService.AdultsList;
+            CreatePie();
         }
-        CreatePie();
+        
     }
 
     private void NavigateToComponent(Adult p)
@@ -95,7 +97,7 @@ else
     }
 
 
-    private PieConfig _config;
+ 
 
     private void CreatePie()
     {

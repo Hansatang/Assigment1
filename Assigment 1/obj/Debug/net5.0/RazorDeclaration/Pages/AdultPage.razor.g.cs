@@ -106,7 +106,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 49 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
+#line 47 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
        
 
 

@@ -91,6 +91,34 @@ using Assigment_1.Data;
 #nullable disable
 #nullable restore
 #line 7 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+using ChartJs.Blazor;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 8 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+using ChartJs.Blazor.Common;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 9 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+using ChartJs.Blazor.PieChart;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 10 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+using ChartJs.Blazor.Util;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 11 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
 using Models;
 
 #line default
@@ -106,11 +134,12 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 58 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
+#line 63 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\SearchResult.razor"
  
     [Parameter]
     public string Id { get; set; }
     public IList<Adult> Adults { get; set; }
+    private PieConfig _config;
     public IList<Adult> AdultsSearched = new List<Adult>();
 
     protected override async Task OnInitializedAsync()
@@ -123,11 +152,58 @@ using Models;
                 AdultsSearched.Add(adult);
             }
         }
+        CreatePie();
     }
 
     private void NavigateToComponent(Adult p)
     {
         NavigationManager.NavigateTo("AdultPage/" + p.Id);
+    }
+    
+    
+    private void CreatePie()
+    {
+        _config = new PieConfig
+        {
+            Options = new PieOptions
+            {
+                Responsive = true,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Male to Female Ratio"
+                }
+            }
+        };
+
+        foreach (string color in new[] {"Male", "Female"})
+        {
+            _config.Data.Labels.Add(color);
+        }
+
+        int male = 0;
+        int female = 0;
+        foreach (var adult in AdultsSearched)
+        {
+            if (adult.Sex.Equals("M"))
+            {
+                male += 1;
+            }
+            else
+            {
+                female += 1;
+            }
+        }
+
+        PieDataset<int> dataset = new PieDataset<int>(new[] {male, female})
+        {
+            BackgroundColor = new[]
+            {
+                ColorUtil.ColorHexString(255, 99, 132),
+                ColorUtil.ColorHexString(255, 205, 86),
+            }
+        };
+        _config.Data.Datasets.Add(dataset);
     }
 
 #line default
