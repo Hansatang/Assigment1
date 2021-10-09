@@ -14,6 +14,7 @@
     <label for="search">Name To search:</label><br>
     <input type="text" @bind="@SearchPhrase" @oninput="@((e) => { SearchPhrase = (string) e.Value; })"><br>
     <input type="submit" value="Submit" @onclick="Search">
+    <input type="submit" value="Generate" @onclick="Generate">
 </div>
 
 @if (Adults == null)
@@ -73,16 +74,14 @@ else
         var user = (await AuthStat).User;
         if (!user.Identity.IsAuthenticated)
         {
-            Console.WriteLine("1serw");
             NavigationManager.NavigateTo($"/Login");
         }
         else
         {
-            Console.WriteLine("2str");
             Adults = AdultService.AdultsList;
             CreatePie();
+            PopulatePie();
         }
-        
     }
 
     private void NavigateToComponent(Adult p)
@@ -92,12 +91,10 @@ else
 
     private void Search()
     {
+        
         NavigationManager.NavigateTo("SearchResult/" + SearchPhrase);
         Console.WriteLine("Hello");
     }
-
-
- 
 
     private void CreatePie()
     {
@@ -118,7 +115,10 @@ else
         {
             _config.Data.Labels.Add(color);
         }
+    }
 
+    private void PopulatePie()
+    {
         int male = 0;
         int female = 0;
         foreach (var adult in Adults)
@@ -142,5 +142,11 @@ else
             }
         };
         _config.Data.Datasets.Add(dataset);
+    }
+
+    private void Generate()
+    {
+        _config.Data.Datasets.Clear();
+        PopulatePie();
     }
 }

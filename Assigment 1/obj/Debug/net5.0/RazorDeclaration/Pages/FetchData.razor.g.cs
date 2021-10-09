@@ -133,7 +133,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 62 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 63 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
  
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
@@ -156,8 +156,8 @@ using Models;
             Console.WriteLine("2str");
             Adults = AdultService.AdultsList;
             CreatePie();
+            PopulatePie();
         }
-        
     }
 
     private void NavigateToComponent(Adult p)
@@ -170,9 +170,6 @@ using Models;
         NavigationManager.NavigateTo("SearchResult/" + SearchPhrase);
         Console.WriteLine("Hello");
     }
-
-
- 
 
     private void CreatePie()
     {
@@ -193,7 +190,10 @@ using Models;
         {
             _config.Data.Labels.Add(color);
         }
+    }
 
+    private void PopulatePie()
+    {
         int male = 0;
         int female = 0;
         foreach (var adult in Adults)
@@ -217,6 +217,12 @@ using Models;
             }
         };
         _config.Data.Datasets.Add(dataset);
+    }
+
+    private void Generate()
+    {
+        _config.Data.Datasets.Clear();
+        PopulatePie();
     }
 
 #line default
