@@ -133,29 +133,33 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 66 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
  
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
+    
     public string SearchPhrase;
+    private int? _width = 600;
     private PieConfig _config;
+    
     public IList<Adult> Adults { get; set; }
+    public IList<Adult> AdultsSearched { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         var user = (await AuthStat).User;
+        CreatePie();
         if (!user.Identity.IsAuthenticated)
         {
-            Console.WriteLine("1serw");
             NavigationManager.NavigateTo($"/Login");
         }
         else
         {
-            Console.WriteLine("2str");
             Adults = AdultService.AdultsList;
-            CreatePie();
+            AdultsSearched = Adults;
+            
             PopulatePie();
         }
     }
@@ -167,8 +171,15 @@ using Models;
 
     private void Search()
     {
-        NavigationManager.NavigateTo("SearchResult/" + SearchPhrase);
-        Console.WriteLine("Hello");
+        AdultsSearched = new List<Adult>();
+        foreach (Adult adult in Adults)
+        {
+            if (adult.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
+            {
+                AdultsSearched.Add(adult);
+            }
+        }
+        Generate();
     }
 
     private void CreatePie()
@@ -177,7 +188,8 @@ using Models;
         {
             Options = new PieOptions
             {
-                Responsive = true,
+               
+                Responsive = false,
                 Title = new OptionsTitle
                 {
                     Display = true,
@@ -196,7 +208,7 @@ using Models;
     {
         int male = 0;
         int female = 0;
-        foreach (var adult in Adults)
+        foreach (var adult in AdultsSearched)
         {
             if (adult.Sex.Equals("M"))
             {
@@ -221,6 +233,13 @@ using Models;
 
     private void Generate()
     {
+        _config.Data.Datasets.Clear();
+        PopulatePie();
+    }
+    
+    private void Backer()
+    {
+        AdultsSearched = Adults;
         _config.Data.Datasets.Clear();
         PopulatePie();
     }

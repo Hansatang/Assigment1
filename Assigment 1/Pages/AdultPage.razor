@@ -1,6 +1,6 @@
 ﻿@page "/AdultPage"
 @page "/AdultPage/{Id:int}" 
-
+@attribute [Authorize(Policy = "SecurityLevel4")]
 
 @using Assigment_1.Data
 @using Models

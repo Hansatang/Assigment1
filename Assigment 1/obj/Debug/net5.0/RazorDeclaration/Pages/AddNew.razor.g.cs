@@ -83,15 +83,22 @@ using Assigment_1.Shared;
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
+#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
 using Assigment_1.Data;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
+#line 4 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
 using Models;
+
+#line default
+#line hidden
+#nullable disable
+#nullable restore
+#line 2 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
+           [Authorize(Policy = "SecurityLevel2")]
 
 #line default
 #line hidden
@@ -105,7 +112,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 62 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
+#line 63 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
        
     public string ErrorMessage { get; set; }
     public IList<Adult> Adults { get; set; }

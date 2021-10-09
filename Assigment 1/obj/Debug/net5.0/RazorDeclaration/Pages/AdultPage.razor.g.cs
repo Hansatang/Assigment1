@@ -96,6 +96,13 @@ using Models;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
+           [Authorize(Policy = "SecurityLevel4")]
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/AdultPage")]
     [Microsoft.AspNetCore.Components.RouteAttribute("/AdultPage/{Id:int}")]
     public partial class AdultPage : Microsoft.AspNetCore.Components.ComponentBase

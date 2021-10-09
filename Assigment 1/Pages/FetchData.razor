@@ -13,11 +13,14 @@
 <div id="block_container">
     <label for="search">Name To search:</label><br>
     <input type="text" @bind="@SearchPhrase" @oninput="@((e) => { SearchPhrase = (string) e.Value; })"><br>
-    <input type="submit" value="Submit" @onclick="Search">
-    <input type="submit" value="Generate" @onclick="Generate">
+    <input type="submit" value="Search" @onclick="Search">
+    <input type="submit" value="Show All" @onclick="Backer">
+</div>
+<div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+    <Chart Width="_width" Config="_config"></Chart> 
 </div>
 
-@if (Adults == null)
+@if (AdultsSearched == null)
 {
     <p>
         <em>Loading...</em>
@@ -40,7 +43,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var adult in Adults)
+        @foreach (var adult in AdultsSearched)
         {
             <tr @onclick="@(() => NavigateToComponent(adult))">
                 <td>@adult.FirstName</td>
@@ -56,7 +59,7 @@ else
         }
         </tbody>
     </table>
-    <Chart Config="_config"></Chart>
+  
 }
 
 @code
@@ -64,14 +67,19 @@ else
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
+    
     public string SearchPhrase;
+    private int? _width = 600;
     private PieConfig _config;
+    
     public IList<Adult> Adults { get; set; }
+    public IList<Adult> AdultsSearched { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         base.OnInitialized();
         var user = (await AuthStat).User;
+        CreatePie();
         if (!user.Identity.IsAuthenticated)
         {
             NavigationManager.NavigateTo($"/Login");
@@ -79,7 +87,8 @@ else
         else
         {
             Adults = AdultService.AdultsList;
-            CreatePie();
+            AdultsSearched = Adults;
+            
             PopulatePie();
         }
     }
@@ -91,9 +100,15 @@ else
 
     private void Search()
     {
-        
-        NavigationManager.NavigateTo("SearchResult/" + SearchPhrase);
-        Console.WriteLine("Hello");
+        AdultsSearched = new List<Adult>();
+        foreach (Adult adult in Adults)
+        {
+            if (adult.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
+            {
+                AdultsSearched.Add(adult);
+            }
+        }
+        Generate();
     }
 
     private void CreatePie()
@@ -102,7 +117,8 @@ else
         {
             Options = new PieOptions
             {
-                Responsive = true,
+               
+                Responsive = false,
                 Title = new OptionsTitle
                 {
                     Display = true,
@@ -121,7 +137,7 @@ else
     {
         int male = 0;
         int female = 0;
-        foreach (var adult in Adults)
+        foreach (var adult in AdultsSearched)
         {
             if (adult.Sex.Equals("M"))
             {
@@ -146,6 +162,13 @@ else
 
     private void Generate()
     {
+        _config.Data.Datasets.Clear();
+        PopulatePie();
+    }
+    
+    private void Backer()
+    {
+        AdultsSearched = Adults;
         _config.Data.Datasets.Clear();
         PopulatePie();
     }
