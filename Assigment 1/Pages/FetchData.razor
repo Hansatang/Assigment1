@@ -45,7 +45,7 @@ else
         <tbody>
         @foreach (var adult in AdultsShown)
         {
-            <tr @onclick="@(() => NavigateToComponent(adult))">
+            <tr class="onHoverChange" @onclick="@(() => NavigateToComponent(adult))">
                 <td>@adult.FirstName</td>
                 <td>@adult.LastName</td>
                 <td>@adult.HairColor</td>
@@ -68,7 +68,7 @@ else
     protected Task<AuthenticationState> AuthStat { get; set; }
 
     
-    public string SearchPhrase;
+    public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
     
@@ -107,6 +107,7 @@ else
                 AdultsShown.Add(adult);
             }
         }
+        SearchPhrase = "";
         _config.Data.Datasets.Clear();
         PopulatePie();
     }

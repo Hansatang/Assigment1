@@ -139,12 +139,12 @@ using Models;
     protected Task<AuthenticationState> AuthStat { get; set; }
 
     
-    public string SearchPhrase;
+    public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
     
     public IList<Adult> Adults { get; set; }
-    public IList<Adult> AdultsSearched { get; set; }
+    public IList<Adult> AdultsShown { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -158,8 +158,7 @@ using Models;
         else
         {
             Adults = AdultService.AdultsList;
-            AdultsSearched = Adults;
-            
+            AdultsShown = Adults;
             PopulatePie();
         }
     }
@@ -171,15 +170,17 @@ using Models;
 
     private void Search()
     {
-        AdultsSearched = new List<Adult>();
+        AdultsShown = new List<Adult>();
         foreach (Adult adult in Adults)
         {
             if (adult.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
             {
-                AdultsSearched.Add(adult);
+                AdultsShown.Add(adult);
             }
         }
-        Generate();
+        SearchPhrase = "";
+        _config.Data.Datasets.Clear();
+        PopulatePie();
     }
 
     private void CreatePie()
@@ -208,7 +209,7 @@ using Models;
     {
         int male = 0;
         int female = 0;
-        foreach (var adult in AdultsSearched)
+        foreach (var adult in AdultsShown)
         {
             if (adult.Sex.Equals("M"))
             {
@@ -231,15 +232,9 @@ using Models;
         _config.Data.Datasets.Add(dataset);
     }
 
-    private void Generate()
-    {
-        _config.Data.Datasets.Clear();
-        PopulatePie();
-    }
-    
     private void Backer()
     {
-        AdultsSearched = Adults;
+        AdultsShown = Adults;
         _config.Data.Datasets.Clear();
         PopulatePie();
     }
