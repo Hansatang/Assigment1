@@ -20,7 +20,7 @@
     <Chart Width="_width" Config="_config"></Chart> 
 </div>
 
-@if (AdultsSearched == null)
+@if (AdultsShown == null)
 {
     <p>
         <em>Loading...</em>
@@ -43,7 +43,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var adult in AdultsSearched)
+        @foreach (var adult in AdultsShown)
         {
             <tr @onclick="@(() => NavigateToComponent(adult))">
                 <td>@adult.FirstName</td>
@@ -73,7 +73,7 @@ else
     private PieConfig _config;
     
     public IList<Adult> Adults { get; set; }
-    public IList<Adult> AdultsSearched { get; set; }
+    public IList<Adult> AdultsShown { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -87,8 +87,7 @@ else
         else
         {
             Adults = AdultService.AdultsList;
-            AdultsSearched = Adults;
-            
+            AdultsShown = Adults;
             PopulatePie();
         }
     }
@@ -100,15 +99,16 @@ else
 
     private void Search()
     {
-        AdultsSearched = new List<Adult>();
+        AdultsShown = new List<Adult>();
         foreach (Adult adult in Adults)
         {
             if (adult.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
             {
-                AdultsSearched.Add(adult);
+                AdultsShown.Add(adult);
             }
         }
-        Generate();
+        _config.Data.Datasets.Clear();
+        PopulatePie();
     }
 
     private void CreatePie()
@@ -137,7 +137,7 @@ else
     {
         int male = 0;
         int female = 0;
-        foreach (var adult in AdultsSearched)
+        foreach (var adult in AdultsShown)
         {
             if (adult.Sex.Equals("M"))
             {
@@ -160,15 +160,9 @@ else
         _config.Data.Datasets.Add(dataset);
     }
 
-    private void Generate()
-    {
-        _config.Data.Datasets.Clear();
-        PopulatePie();
-    }
-    
     private void Backer()
     {
-        AdultsSearched = Adults;
+        AdultsShown = Adults;
         _config.Data.Datasets.Clear();
         PopulatePie();
     }
