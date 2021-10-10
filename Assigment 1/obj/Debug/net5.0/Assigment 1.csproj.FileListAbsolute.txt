@@ -58,8 +58,6 @@ C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Assigment 
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Assigment 1.csproj.CopyComplete
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\AdultPage.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\AdultPage.razor.g.cs
-C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\SearchResult.razor.g.cs
-C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\SearchResult.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Security.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs

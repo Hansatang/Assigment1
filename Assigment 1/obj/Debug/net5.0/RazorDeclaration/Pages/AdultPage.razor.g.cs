@@ -118,7 +118,7 @@ using Models;
 
 
     string mainClass { get; set; }
-    string secondaryClass   { get; set; }
+    string secondaryClass { get; set; }
 
     [Parameter]
     public int Id { get; set; }
@@ -148,7 +148,7 @@ using Models;
 
     private void Remove()
     {
-        Console.WriteLine(mainClass+"sasad");
+        Console.WriteLine(mainClass + "sasad");
         if (!mainClass.Equals("hidden"))
         {
             secondaryClass = "";
@@ -163,7 +163,6 @@ using Models;
 
     private void Confirm()
     {
-       
         AdultService.Remove(Adult.Id);
         mainClass = "";
         NavigationManager.NavigateTo("/fetchdata");
