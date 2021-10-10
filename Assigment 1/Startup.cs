@@ -44,6 +44,13 @@ namespace Assigment_1
                     if (levelClaim == null) return false;
                     return int.Parse(levelClaim.Value) >= 2;
                 }));
+                options.AddPolicy("LoggedIn", a => a.RequireAuthenticatedUser().RequireAssertion(context =>
+                {
+                    Claim levelClaim = context.User.FindFirst(claim => claim.Type.Equals("Level"));
+                    if (levelClaim == null) return false;
+                    return int.Parse(levelClaim.Value) >= 1;
+                }));
+                
             });
         }
 
