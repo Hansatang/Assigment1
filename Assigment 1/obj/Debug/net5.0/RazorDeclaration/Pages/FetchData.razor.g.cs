@@ -148,19 +148,20 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        var user = (await AuthStat).User;
+         base.OnInitialized();
+        // var user = (await AuthStat).User;
         CreatePie();
-        if (!user.Identity.IsAuthenticated)
-        {
-            NavigationManager.NavigateTo($"/Login");
-        }
-        else
-        {
-            Adults = AdultService.AdultsList;
+        // if (!user.Identity.IsAuthenticated)
+        // {
+        //     NavigationManager.NavigateTo($"/Login");
+        // }
+        // else
+        // {
+            Adults = await CloudAdultInterface.GetAdultAsync();
+           // Adults = AdultService.AdultsList;
             AdultsShown = Adults;
             PopulatePie();
-        }
+        // }
     }
 
     private void NavigateToComponent(Adult p)
@@ -243,7 +244,7 @@ using Models;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultService AdultService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICloudAdultInterface CloudAdultInterface { get; set; }
     }
 }
 #pragma warning restore 1591

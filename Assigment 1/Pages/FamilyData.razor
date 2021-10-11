@@ -1,0 +1,112 @@
+﻿@page "/FamilyData"
+
+@using Assigment_1.Data
+@using ChartJs.Blazor
+@using ChartJs.Blazor.Common
+@using ChartJs.Blazor.PieChart
+@using ChartJs.Blazor.Util
+@using Models
+@inject IFamilyService FamilyService
+@inject ICloudAdultInterface cloudFamilyInterface
+@inject NavigationManager NavigationManager;
+
+<h3>FamilyData</h3>
+
+<div id="block_container">
+    <label for="search">Name To search:</label><br>
+    <input type="text" @bind="@SearchPhrase" @oninput="@((e) => { SearchPhrase = (string) e.Value; })"><br>
+    <input type="submit" value="Search" @onclick="Search">
+    <input type="submit" value="Show All" @onclick="Backer">
+</div>
+
+@if (FamiliesShown == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table" id="datatable">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Street Name</th>
+            <th>House Number</th>
+            <th>Adults</th>
+            <th>Children</th>
+            <th>Pets</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var family in FamiliesShown)
+        {
+            <tr class="onHoverChange" @onclick="@(() => NavigateToComponent(family))">
+                <td>@family.Id</td>
+                <td>@family.StreetName</td>
+                <td>@family.HouseNumber</td>
+                <td>@family.GetAdults()</td>
+                <td>@family.GetChildren()</td>
+                <td>@family.GetPets()</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+  
+}
+
+@code
+{
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
+
+    
+    public string SearchPhrase { get; set; }
+    private int? _width = 600;
+    private PieConfig _config;
+    
+    public IList<Family> Families { get; set; }
+    public IList<Family> FamiliesShown { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/Login");
+        }
+        else
+        {
+       //     Families = FamilyService.FamilyList;
+       //     Families = await cloudFamilyInterface.GetTodosAsync();
+            Console.WriteLine(Families.Count);
+            FamiliesShown = Families;
+        }
+    }
+
+    private void NavigateToComponent(Family p)
+    {
+        NavigationManager.NavigateTo("FamilyPage/" + p.Id);
+    }
+
+    private void Search()
+    {
+        FamiliesShown = new List<Family>();
+        foreach (Family family in Families)
+        {
+            // if (Fa.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
+            // {
+            //     FamiliesShown.Add(adult);
+            // }
+        }
+        SearchPhrase = "";
+        _config.Data.Datasets.Clear();
+    }
+    
+    private void Backer()
+    {
+        FamiliesShown = Families;
+    }
+}

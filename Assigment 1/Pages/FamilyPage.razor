@@ -1,0 +1,296 @@
+﻿@page "/FamilyPage"
+@page "/FamilyPage/{Id:int}" 
+@attribute [Authorize(Policy = "SecurityLevel4")]
+
+@using Assigment_1.Data
+@using ChartJs.Blazor
+@using ChartJs.Blazor.Common
+@using ChartJs.Blazor.PieChart
+@using ChartJs.Blazor.Util
+@using Models
+@inject IAdultService AdultService
+@inject IFamilyService FamilyService
+@inject NavigationManager NavigationManager;
+<h3>Adult Info Page</h3>
+
+
+<div id="block_container">
+    <label for="search">Name To search:</label><br>
+    <input type="text" @bind="@SearchPhrase" @oninput="@((e) => { SearchPhrase = (string) e.Value; })"><br>
+    <input type="submit" value="Search" @onclick="SearchAdults">
+    <input type="submit" value="Show All" @onclick="BackerAdults">
+</div>
+<div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
+   <Chart Width="_width" Config="_config"></Chart> 
+</div>
+
+@if (AdultsShown == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table" id="datatable">
+        <thead>
+        <tr>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>HairColor</th>
+            <th>EyeColor</th>
+            <th>Age</th>
+            <th>Weight</th>
+            <th>Height</th>
+            <th>Sex</th>
+            <th>JobTitle</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var adult in AdultsShown)
+        {
+            <tr class="onHoverChange" @onclick="@(() => NavigateToComponent(adult))">
+                <td>@adult.FirstName</td>
+                <td>@adult.LastName</td>
+                <td>@adult.HairColor</td>
+                <td>@adult.EyeColor</td>
+                <td>@adult.Age</td>
+                <td>@adult.Weight</td>
+                <td>@adult.Height</td>
+                <td>@adult.Sex</td>
+                <td>@adult.JobTitle.JobTitle</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+  
+}
+<br><br/>
+<br><br/>
+
+
+@if (ChildrenShown == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    if (ChildrenShown.Count != 0)
+    {
+        <table class="table" id="datatable">
+            <thead>
+            <tr>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>HairColor</th>
+                <th>EyeColor</th>
+                <th>Age</th>
+                <th>Weight</th>
+                <th>Height</th>
+                <th>Sex</th>
+                <th>Interests</th>
+                <th>Pets</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var child in ChildrenShown)
+            {
+                <tr class="onHoverChange" @onclick="@(() => NavigateToComponentC(child))">
+                    <td>@child.FirstName</td>
+                    <td>@child.LastName</td>
+                    <td>@child.HairColor</td>
+                    <td>@child.EyeColor</td>
+                    <td>@child.Age</td>
+                    <td>@child.Weight</td>
+                    <td>@child.Height</td>
+                    <td>@child.Sex</td>
+                    <td>@child.GetInterest()</td>
+                    <td>@child.GetPets()</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+}
+<br><br/>
+<br><br/>
+
+@if (PetsShown == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    if (PetsShown.Count!=0)
+    {
+         <table class="table" id="datatable">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Species</th>
+                    <th>Age</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var pet in PetsShown)
+                {
+                    <tr class="onHoverChange" @onclick="@(() => NavigateToComponentP(pet))">
+                        <td>@pet.Name</td>
+                        <td>@pet.Species</td>
+                        <td>@pet.Age</td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+    }
+}
+
+@code
+{
+    [CascadingParameter]
+    protected Task<AuthenticationState> AuthStat { get; set; }
+
+    [Parameter]
+    
+    public int Id { get; set; }
+    
+    public string SearchPhrase { get; set; }
+    private int? _width = 600;
+    private PieConfig _config;
+    
+    public IList<Family> Families { get; set; }
+    
+    public IList<Adult> Adults { get; set; }
+    public IList<Adult> AdultsShown { get; set; }
+    
+    public IList<Child> Children { get; set; }
+    public IList<Child> ChildrenShown { get; set; }
+    
+    public IList<Pet> Pets { get; set; }
+    public IList<Pet> PetsShown { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        base.OnInitialized();
+        var user = (await AuthStat).User;
+        CreatePie();
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/Login");
+        }
+        else
+        {
+          //  Families = FamilyService.FamilyList;
+         //   Adults = FamilyService.FamilyList.First(t => t.Id == Id).Adults;
+          //  Children = FamilyService.FamilyList.First(t => t.Id == Id).Children;
+          //  Pets = FamilyService.FamilyList.First(t => t.Id == Id).Pets;
+            AdultsShown = Adults;
+            ChildrenShown = Children;
+            PetsShown = Pets;
+            PopulatePie();
+        }
+    }
+
+    private void NavigateToComponent(Adult p)
+    {
+        NavigationManager.NavigateTo("AdultPage/" + p.Id);
+    }
+    
+    private void NavigateToComponentC(Child p)
+    {
+        NavigationManager.NavigateTo("ChildPage/" + p.Id);
+    }
+    
+    private void NavigateToComponentP(Pet p)
+    {
+        NavigationManager.NavigateTo("PetPage/" + p.Id);
+    }
+
+    private void SearchAdults()
+    {
+        AdultsShown = new List<Adult>();
+        foreach (Adult adult in Adults)
+        {
+            if (adult.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
+            {
+                AdultsShown.Add(adult);
+            }
+        }
+        SearchPhrase = "";
+        _config.Data.Datasets.Clear();
+        PopulatePie();
+    }
+
+    private void CreatePie()
+    {
+        _config = new PieConfig
+        {
+            Options = new PieOptions
+            {
+               
+                Responsive = false,
+                Title = new OptionsTitle
+                {
+                    Display = true,
+                    Text = "Male to Female Ratio"
+                }
+            }
+        };
+
+        foreach (string color in new[] {"Male", "Female"})
+        {
+            _config.Data.Labels.Add(color);
+        }
+    }
+
+    private void PopulatePie()
+    {
+        int male = 0;
+        int female = 0;
+        foreach (var adult in AdultsShown)
+        {
+            if (adult.Sex.Equals("M"))
+            {
+                male += 1;
+            }
+            else
+            {
+                female += 1;
+            }
+        }
+        
+        foreach (var child in ChildrenShown)
+        {
+            if (child.Sex.Equals("M"))
+            {
+                male += 1;
+            }
+            else
+            {
+                female += 1;
+            }
+        }
+
+        PieDataset<int> dataset = new PieDataset<int>(new[] {male, female})
+        {
+            BackgroundColor = new[]
+            {
+                ColorUtil.ColorHexString(255, 99, 132),
+                ColorUtil.ColorHexString(255, 205, 86),
+            }
+        };
+        _config.Data.Datasets.Add(dataset);
+    }
+
+    private void BackerAdults()
+    {
+        AdultsShown = Adults;
+        _config.Data.Datasets.Clear();
+        PopulatePie();
+    }
+}

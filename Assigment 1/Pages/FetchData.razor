@@ -6,7 +6,7 @@
 @using ChartJs.Blazor.PieChart
 @using ChartJs.Blazor.Util
 @using Models
-@inject IAdultService AdultService
+@inject ICloudAdultInterface CloudAdultInterface
 @inject NavigationManager NavigationManager;
 
 <h1>Adults List</h1>
@@ -77,19 +77,20 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        base.OnInitialized();
-        var user = (await AuthStat).User;
+         base.OnInitialized();
+        // var user = (await AuthStat).User;
         CreatePie();
-        if (!user.Identity.IsAuthenticated)
-        {
-            NavigationManager.NavigateTo($"/Login");
-        }
-        else
-        {
-            Adults = AdultService.AdultsList;
+        // if (!user.Identity.IsAuthenticated)
+        // {
+        //     NavigationManager.NavigateTo($"/Login");
+        // }
+        // else
+        // {
+            Adults = await CloudAdultInterface.GetAdultAsync();
+           // Adults = AdultService.AdultsList;
             AdultsShown = Adults;
             PopulatePie();
-        }
+        // }
     }
 
     private void NavigateToComponent(Adult p)

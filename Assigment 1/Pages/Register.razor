@@ -3,6 +3,7 @@
 @using Microsoft.AspNetCore.Components
 @using Assigment_1.Data
 @using System.Collections
+@inject ICloudUserService CloudUserService
 @inject IUserService UserService
 @inject NavigationManager NavigationManager;
 <h3>Register</h3>
@@ -48,7 +49,8 @@
 
     private void Save()
     {
-        UserService.Save(User);
+        CloudUserService.Save(User);
+        // UserService.Save(User);
         NavigationManager.NavigateTo("/Login");
     }
 

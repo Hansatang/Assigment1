@@ -109,10 +109,11 @@ using Assigment_1.Data;
         errorMessage = "";
         try
         {
+            
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/fetchData");
+            NavigationManager.NavigateTo("/fetchdata");
         }
         catch (Exception e)
         {

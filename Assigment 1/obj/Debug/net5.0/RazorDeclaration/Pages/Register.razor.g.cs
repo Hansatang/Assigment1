@@ -118,7 +118,7 @@ using System.Collections;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 35 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Register.razor"
+#line 36 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Register.razor"
        
 
     public ArrayList SecurityLevels = new()
@@ -135,7 +135,8 @@ using System.Collections;
 
     private void Save()
     {
-        UserService.Save(User);
+        CloudUserService.Save(User);
+        // UserService.Save(User);
         NavigationManager.NavigateTo("/Login");
     }
 
@@ -145,6 +146,7 @@ using System.Collections;
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserService UserService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICloudUserService CloudUserService { get; set; }
     }
 }
 #pragma warning restore 1591

@@ -2,7 +2,7 @@
 @attribute [Authorize(Policy = "SecurityLevel2")]
 @using Assigment_1.Data
 @using Models
-@inject IAdultService AdultService
+@inject ICloudAdultInterface CloudAdultInterface
 @inject NavigationManager NavigationManager;
 
 
@@ -77,10 +77,11 @@
 
     protected override async Task OnInitializedAsync()
     {
-        Adults = AdultService.AdultsList;
+        Adults =  await CloudAdultInterface.GetAdultAsync();
+       
     }
 
-    public void Edit()
+    public async void Edit()
     {
         if (Check(FirstName) || Check(LastName) || Check(Age) || Check(HairColor) || Check(EyeColor) || Check(Weight) || Check(Height))
         {
@@ -118,9 +119,8 @@
                 };
                 adult.JobTitle = job;
             }
-
-            Adults.Add(adult);
-            AdultService.Save();
+            
+            await CloudAdultInterface.AddAdultAsync(adult);
             NavigationManager.NavigateTo("/fetchdata");
         }
     }
