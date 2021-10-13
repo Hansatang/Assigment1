@@ -12,14 +12,14 @@ namespace Assigment_1.Data
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
         private readonly IJSRuntime jsRuntime;
-        private ICloudUserService CloudUserService;
-        private readonly IUserService userService;
+        private readonly ICloudUserService CloudUserService;
+
         private User cachedUser;
 
-        public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, IUserService userService, ICloudUserService cloudUserService)
+        public CustomAuthenticationStateProvider(IJSRuntime jsRuntime, ICloudUserService cloudUserService)
         {
             this.jsRuntime = jsRuntime;
-            this.userService = userService;
+
             this.CloudUserService = cloudUserService;
         }
 
@@ -33,7 +33,6 @@ namespace Assigment_1.Data
                 {
                     User tmp = JsonSerializer.Deserialize<User>(userAsJson);
                     await CloudUserService.ValidateUser(tmp.UserName, tmp.Password);
-                  //  ValidateLogin(tmp.UserName, tmp.Password);
                 }
             }
             else
@@ -48,15 +47,14 @@ namespace Assigment_1.Data
         public async void ValidateLogin(string username, string password)
         {
             Console.WriteLine("Validating log in");
-            // if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
-            // if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
+            if (string.IsNullOrEmpty(username)) throw new Exception("Enter username");
+            if (string.IsNullOrEmpty(password)) throw new Exception("Enter password");
             ClaimsIdentity identity = new ClaimsIdentity();
             try
             {
-                Console.WriteLine(username+" ttt "+password);
-                User user =  await CloudUserService.ValidateUser(username, password);
-                Console.WriteLine(user.UserName+"yolo");
-                //  User user = userService.ValidateUser(username, password);
+                Console.WriteLine(username + " ttt " + password);
+                User user = await CloudUserService.ValidateUser(username, password);
+                Console.WriteLine(user.UserName + "yolo");
                 identity = SetupClaimsForUser(user);
                 string serialisedData = JsonSerializer.Serialize(user);
                 jsRuntime.InvokeVoidAsync("sessionStorage.setItem", "currentUser", serialisedData);

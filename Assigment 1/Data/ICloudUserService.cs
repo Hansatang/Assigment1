@@ -6,9 +6,7 @@ namespace Assigment_1.Data
 {
     public interface ICloudUserService
     {
-        
-        Task<User>  ValidateUser(string userName, string Password);
-        Task  Save(User user);
-        
+        Task<User> ValidateUser(string userName, string Password);
+        Task Save(User user);
     }
 }

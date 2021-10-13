@@ -53,16 +53,13 @@ else
 }
 
 @code {
-
-
     string mainClass { get; set; }
     string secondaryClass { get; set; }
+    
+    public Adult Adult { get; set; }
 
     [Parameter]
     public int Id { get; set; }
-
-    public Adult Adult { get; set; }
-
 
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
@@ -83,13 +80,11 @@ else
                 };
                 Adult.JobTitle = job;
             }
-            Console.WriteLine(Adult.FirstName);
         }
     }
 
     public async void Edit()
     {
-        Console.WriteLine(Adult.FirstName);
         await CloudAdultInterface.UpdateAsync(Adult);
         NavigationManager.NavigateTo("/fetchdata");
     }
@@ -118,8 +113,7 @@ else
 
     public bool Check(string s)
     {
-        return (s == null || s == String.Empty) ? true : false;
+        return string.IsNullOrEmpty(s) ? true : false;
     }
 
 }
-

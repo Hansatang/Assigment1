@@ -82,20 +82,6 @@ using Assigment_1.Shared;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 2 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Index.razor"
-using Assigment_1.Data;
-
-#line default
-#line hidden
-#nullable disable
-#nullable restore
-#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Index.razor"
-using Models;
-
-#line default
-#line hidden
-#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/")]
     public partial class Index : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -105,7 +91,6 @@ using Models;
         }
         #pragma warning restore 1998
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultService AdultService { get; set; }
     }
 }
 #pragma warning restore 1591

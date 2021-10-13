@@ -133,16 +133,16 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 60 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FamilyData.razor"
+#line 59 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FamilyData.razor"
  
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
-    
+
     public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
-    
+
     public IList<Family> Families { get; set; }
     public IList<Family> FamiliesShown { get; set; }
 
@@ -156,8 +156,8 @@ using Models;
         }
         else
         {
-       //     Families = FamilyService.FamilyList;
-       //     Families = await cloudFamilyInterface.GetTodosAsync();
+    //     Families = FamilyService.FamilyList;
+    //     Families = await cloudFamilyInterface.GetTodosAsync();
             Console.WriteLine(Families.Count);
             FamiliesShown = Families;
         }
@@ -173,15 +173,15 @@ using Models;
         FamiliesShown = new List<Family>();
         foreach (Family family in Families)
         {
-            // if (Fa.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
-            // {
-            //     FamiliesShown.Add(adult);
-            // }
+    // if (Fa.FirstName.Contains(SearchPhrase) || adult.LastName.Contains(SearchPhrase))
+    // {
+    //     FamiliesShown.Add(adult);
+    // }
         }
         SearchPhrase = "";
         _config.Data.Datasets.Clear();
     }
-    
+
     private void Backer()
     {
         FamiliesShown = Families;

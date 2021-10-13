@@ -13,23 +13,17 @@ namespace Assigment_1.Data
         private string uri = "https://localhost:5003";
         private readonly HttpClient client;
 
-        public CloudUserService() {
-        
+        public CloudUserService()
+        {
             client = new HttpClient();
         }
-        
+
 
         public async Task<User> ValidateUser(string userName, string password)
         {
-            
-            Console.WriteLine("hi");
-            Task<string> stringAsync = client.GetStringAsync(uri+$"/users?userName={userName}&password={password}");
+            Task<string> stringAsync = client.GetStringAsync(uri + $"/users?userName={userName}&password={password}");
             string message = await stringAsync;
-            Console.WriteLine(message);
             User result = JsonSerializer.Deserialize<User>(message);
-            Console.WriteLine(1+" "+result.UserName);
-            Console.WriteLine(2+" "+result.Password);
-            Console.WriteLine(3+" "+result.Domain);
             if (result == null)
             {
                 throw new Exception("User not found");
@@ -45,13 +39,11 @@ namespace Assigment_1.Data
 
         public async Task Save(User user)
         {
-            Console.WriteLine(user.UserName);
-            string todoAsJson = JsonSerializer.Serialize(user);
-            HttpContent content = new StringContent(todoAsJson,
+            string userAsJson = JsonSerializer.Serialize(user);
+            HttpContent content = new StringContent(userAsJson,
                 Encoding.UTF8,
                 "application/json");
-            await client.PostAsync(uri+"/users", content);
-
+            await client.PostAsync(uri + "/users", content);
         }
     }
 }

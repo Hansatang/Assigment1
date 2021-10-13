@@ -17,7 +17,7 @@
     <input type="submit" value="Show All" @onclick="Backer">
 </div>
 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-    <Chart Width="_width" Config="_config"></Chart> 
+    <Chart Width="_width" Config="_config"></Chart>
 </div>
 
 @if (AdultsShown == null)
@@ -59,7 +59,6 @@ else
         }
         </tbody>
     </table>
-  
 }
 
 @code
@@ -67,30 +66,30 @@ else
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
-    
+
     public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
-    
+
     public IList<Adult> Adults { get; set; }
     public IList<Adult> AdultsShown { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-         base.OnInitialized();
-        // var user = (await AuthStat).User;
+        base.OnInitialized();
+        var user = (await AuthStat).User;
         CreatePie();
-        // if (!user.Identity.IsAuthenticated)
-        // {
-        //     NavigationManager.NavigateTo($"/Login");
-        // }
-        // else
-        // {
+        if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/Login");
+        }
+        else
+        {
             Adults = await CloudAdultInterface.GetAdultAsync();
-           // Adults = AdultService.AdultsList;
+
             AdultsShown = Adults;
             PopulatePie();
-        // }
+        }
     }
 
     private void NavigateToComponent(Adult p)
@@ -119,7 +118,6 @@ else
         {
             Options = new PieOptions
             {
-               
                 Responsive = false,
                 Title = new OptionsTitle
                 {

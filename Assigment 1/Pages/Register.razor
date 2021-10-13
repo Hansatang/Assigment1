@@ -4,7 +4,6 @@
 @using Assigment_1.Data
 @using System.Collections
 @inject ICloudUserService CloudUserService
-@inject IUserService UserService
 @inject NavigationManager NavigationManager;
 <h3>Register</h3>
 
@@ -50,7 +49,7 @@
     private void Save()
     {
         CloudUserService.Save(User);
-        // UserService.Save(User);
+      
         NavigationManager.NavigateTo("/Login");
     }
 

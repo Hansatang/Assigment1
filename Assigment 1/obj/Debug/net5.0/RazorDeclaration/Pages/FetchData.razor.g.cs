@@ -133,35 +133,35 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 66 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 65 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
  
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
-    
+
     public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
-    
+
     public IList<Adult> Adults { get; set; }
     public IList<Adult> AdultsShown { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-         base.OnInitialized();
-        // var user = (await AuthStat).User;
+       base.OnInitialized();
+        var user = (await AuthStat).User;
         CreatePie();
-        // if (!user.Identity.IsAuthenticated)
-        // {
-        //     NavigationManager.NavigateTo($"/Login");
-        // }
-        // else
-        // {
+       if (!user.Identity.IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"/Login");
+        }
+        else
+        {
             Adults = await CloudAdultInterface.GetAdultAsync();
-           // Adults = AdultService.AdultsList;
+
             AdultsShown = Adults;
             PopulatePie();
-        // }
+        }
     }
 
     private void NavigateToComponent(Adult p)
@@ -190,7 +190,6 @@ using Models;
         {
             Options = new PieOptions
             {
-               
                 Responsive = false,
                 Title = new OptionsTitle
                 {

@@ -7,12 +7,11 @@ namespace Assigment_1.Data
 {
     public class FamilyService : IFamilyService
     {
-        public IList<Family> FamilyList { get;  set; }
+        public IList<Family> FamilyList { get; set; }
         private string productsFile = "families.json";
 
         public FamilyService()
         {
-            // Connect();
             if (!File.Exists(productsFile))
             {
                 string productsAsJson = JsonSerializer.Serialize(FamilyList);
@@ -33,8 +32,5 @@ namespace Assigment_1.Data
             string productsAsJson = JsonSerializer.Serialize(FamilyList);
             File.WriteAllText(productsFile, productsAsJson);
         }
-        
-        
-    
     }
 }

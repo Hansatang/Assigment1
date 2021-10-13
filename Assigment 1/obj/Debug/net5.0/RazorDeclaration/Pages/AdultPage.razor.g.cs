@@ -115,16 +115,13 @@ using Models;
 #nullable restore
 #line 55 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
        
-
-
     string mainClass { get; set; }
     string secondaryClass { get; set; }
+    
+    public Adult Adult { get; set; }
 
     [Parameter]
     public int Id { get; set; }
-
-    public Adult Adult { get; set; }
-
 
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
@@ -145,13 +142,11 @@ using Models;
                 };
                 Adult.JobTitle = job;
             }
-            Console.WriteLine(Adult.FirstName);
         }
     }
 
     public async void Edit()
     {
-        Console.WriteLine(Adult.FirstName);
         await CloudAdultInterface.UpdateAsync(Adult);
         NavigationManager.NavigateTo("/fetchdata");
     }
@@ -180,7 +175,7 @@ using Models;
 
     public bool Check(string s)
     {
-        return (s == null || s == String.Empty) ? true : false;
+        return string.IsNullOrEmpty(s) ? true : false;
     }
 
 

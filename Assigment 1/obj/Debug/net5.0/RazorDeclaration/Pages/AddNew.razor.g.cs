@@ -130,8 +130,7 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
-        Adults =  await CloudAdultInterface.GetAdultAsync();
-       
+        Adults = await CloudAdultInterface.GetAdultAsync();
     }
 
     public async void Edit()
@@ -172,7 +171,7 @@ using Models;
                 };
                 adult.JobTitle = job;
             }
-            
+
             await CloudAdultInterface.AddAdultAsync(adult);
             NavigationManager.NavigateTo("/fetchdata");
         }
@@ -180,7 +179,7 @@ using Models;
 
     public bool Check(string s)
     {
-        return (s == null || s == String.Empty) ? true : false;
+        return string.IsNullOrEmpty(s) ? true : false;
     }
 
 
