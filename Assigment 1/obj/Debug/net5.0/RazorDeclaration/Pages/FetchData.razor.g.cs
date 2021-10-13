@@ -148,10 +148,10 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
-       base.OnInitialized();
+        base.OnInitialized();
         var user = (await AuthStat).User;
         CreatePie();
-       if (!user.Identity.IsAuthenticated)
+        if (!user.Identity.IsAuthenticated)
         {
             NavigationManager.NavigateTo($"/Login");
         }

@@ -110,13 +110,15 @@ using System.Threading;
     private string username;
     private string password;
     private string errorMessage;
-
-    public async Task PerformLogin()
+    
+    
+    private async Task PerformLogin()
     {
         errorMessage = "";
         try
         {
-            ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            
+            await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             //Thread.Sleep(10);
             username = "";
             password = "";
