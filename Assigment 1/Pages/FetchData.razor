@@ -6,7 +6,7 @@
 @using ChartJs.Blazor.PieChart
 @using ChartJs.Blazor.Util
 @using Models
-@inject IAdultService AdultService
+@inject ICloudAdultInterface CloudAdultInterface
 @inject NavigationManager NavigationManager;
 
 <h1>Adults List</h1>
@@ -17,7 +17,7 @@
     <input type="submit" value="Show All" @onclick="Backer">
 </div>
 <div style="display:flex; flex-direction: row; justify-content: center; align-items: center">
-    <Chart Width="_width" Config="_config"></Chart> 
+    <Chart Width="_width" Config="_config"></Chart>
 </div>
 
 @if (AdultsShown == null)
@@ -59,7 +59,6 @@ else
         }
         </tbody>
     </table>
-  
 }
 
 @code
@@ -67,11 +66,11 @@ else
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
-    
+
     public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
-    
+
     public IList<Adult> Adults { get; set; }
     public IList<Adult> AdultsShown { get; set; }
 
@@ -86,7 +85,8 @@ else
         }
         else
         {
-            Adults = AdultService.AdultsList;
+            Adults = await CloudAdultInterface.GetAdultAsync();
+
             AdultsShown = Adults;
             PopulatePie();
         }
@@ -118,7 +118,6 @@ else
         {
             Options = new PieOptions
             {
-               
                 Responsive = false,
                 Title = new OptionsTitle
                 {

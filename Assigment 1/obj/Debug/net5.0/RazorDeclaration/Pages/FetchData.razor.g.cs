@@ -133,16 +133,16 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 66 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
+#line 65 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\FetchData.razor"
  
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
 
-    
+
     public string SearchPhrase { get; set; }
     private int? _width = 600;
     private PieConfig _config;
-    
+
     public IList<Adult> Adults { get; set; }
     public IList<Adult> AdultsShown { get; set; }
 
@@ -157,7 +157,8 @@ using Models;
         }
         else
         {
-            Adults = AdultService.AdultsList;
+            Adults = await CloudAdultInterface.GetAdultAsync();
+
             AdultsShown = Adults;
             PopulatePie();
         }
@@ -189,7 +190,6 @@ using Models;
         {
             Options = new PieOptions
             {
-               
                 Responsive = false,
                 Title = new OptionsTitle
                 {
@@ -243,7 +243,7 @@ using Models;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultService AdultService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICloudAdultInterface CloudAdultInterface { get; set; }
     }
 }
 #pragma warning restore 1591

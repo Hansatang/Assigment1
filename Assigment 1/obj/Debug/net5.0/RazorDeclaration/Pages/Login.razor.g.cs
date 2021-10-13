@@ -89,6 +89,13 @@ using Assigment_1.Data;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 3 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
+using System.Threading;
+
+#line default
+#line hidden
+#nullable disable
     [Microsoft.AspNetCore.Components.RouteAttribute("/login")]
     public partial class Login : Microsoft.AspNetCore.Components.ComponentBase
     {
@@ -98,7 +105,7 @@ using Assigment_1.Data;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 24 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
+#line 25 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Login.razor"
        
     private string username;
     private string password;
@@ -110,9 +117,10 @@ using Assigment_1.Data;
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            //Thread.Sleep(10);
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/fetchData");
+            NavigationManager.NavigateTo("/fetchdata");
         }
         catch (Exception e)
         {

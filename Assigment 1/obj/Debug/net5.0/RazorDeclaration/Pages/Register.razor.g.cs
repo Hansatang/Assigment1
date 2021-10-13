@@ -135,7 +135,8 @@ using System.Collections;
 
     private void Save()
     {
-        UserService.Save(User);
+        CloudUserService.Save(User);
+      
         NavigationManager.NavigateTo("/Login");
     }
 
@@ -144,7 +145,7 @@ using System.Collections;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IUserService UserService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICloudUserService CloudUserService { get; set; }
     }
 }
 #pragma warning restore 1591

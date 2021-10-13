@@ -113,18 +113,15 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 47 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
+#line 55 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AdultPage.razor"
        
-
-
     string mainClass { get; set; }
     string secondaryClass { get; set; }
+    
+    public Adult Adult { get; set; }
 
     [Parameter]
     public int Id { get; set; }
-
-    public Adult Adult { get; set; }
-
 
     [CascadingParameter]
     protected Task<AuthenticationState> AuthStat { get; set; }
@@ -134,21 +131,29 @@ using Models;
         secondaryClass = "hidden";
         mainClass = "";
         {
-            Adult = AdultService.AdultsList.First(p => p.Id == Id);
+            IList<Adult> Adults = await CloudAdultInterface.GetAdultAsync();
+            Adult = Adults.First(p => p.Id == Id);
+            if (Check(Adult.JobTitle.JobTitle))
+            {
+                Job job = new Job
+                {
+                    JobTitle = "Unemployed",
+                    Salary = 0
+                };
+                Adult.JobTitle = job;
+            }
         }
     }
 
-    public void Edit()
+    public async void Edit()
     {
-        Console.WriteLine(Adult.FirstName);
-        AdultService.Save();
+        await CloudAdultInterface.UpdateAsync(Adult);
         NavigationManager.NavigateTo("/fetchdata");
     }
 
 
     private void Remove()
     {
-        Console.WriteLine(mainClass + "sasad");
         if (!mainClass.Equals("hidden"))
         {
             secondaryClass = "";
@@ -161,11 +166,16 @@ using Models;
         }
     }
 
-    private void Confirm()
+    private async void Confirm()
     {
-        AdultService.Remove(Adult.Id);
+        await CloudAdultInterface.RemoveAdultAsync(Adult.Id);
         mainClass = "";
         NavigationManager.NavigateTo("/fetchdata");
+    }
+
+    public bool Check(string s)
+    {
+        return string.IsNullOrEmpty(s) ? true : false;
     }
 
 
@@ -173,7 +183,7 @@ using Models;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultService AdultService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICloudAdultInterface CloudAdultInterface { get; set; }
     }
 }
 #pragma warning restore 1591

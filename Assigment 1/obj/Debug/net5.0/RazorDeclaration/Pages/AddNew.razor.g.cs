@@ -130,10 +130,10 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
-        Adults = AdultService.AdultsList;
+        Adults = await CloudAdultInterface.GetAdultAsync();
     }
 
-    public void Edit()
+    public async void Edit()
     {
         if (Check(FirstName) || Check(LastName) || Check(Age) || Check(HairColor) || Check(EyeColor) || Check(Weight) || Check(Height))
         {
@@ -172,15 +172,14 @@ using Models;
                 adult.JobTitle = job;
             }
 
-            Adults.Add(adult);
-            AdultService.Save();
+            await CloudAdultInterface.AddAdultAsync(adult);
             NavigationManager.NavigateTo("/fetchdata");
         }
     }
 
     public bool Check(string s)
     {
-        return (s == null || s == String.Empty) ? true : false;
+        return string.IsNullOrEmpty(s) ? true : false;
     }
 
 
@@ -188,7 +187,7 @@ using Models;
 #line hidden
 #nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private NavigationManager NavigationManager { get; set; }
-        [global::Microsoft.AspNetCore.Components.InjectAttribute] private IAdultService AdultService { get; set; }
+        [global::Microsoft.AspNetCore.Components.InjectAttribute] private ICloudAdultInterface CloudAdultInterface { get; set; }
     }
 }
 #pragma warning restore 1591

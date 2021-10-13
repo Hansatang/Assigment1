@@ -62,7 +62,6 @@ C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDecla
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Security.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Security.razor.g.cs
-C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\users.json
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs
 C:\Users\esben\RiderProjects\Assigment1\Assigment 1\bin\Debug\net5.0\adults.json
@@ -140,3 +139,8 @@ C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\ChartJs.Bl
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\AddNew.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\AddNew.razor.g.cs
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\FamilyData.razor.g.cs
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\FamilyData.razor.g.cs
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\FamilyPage.razor.g.cs
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\FamilyPage.razor.g.cs
+C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\users.json

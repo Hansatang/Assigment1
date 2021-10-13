@@ -1,5 +1,6 @@
 ﻿@page "/login"
 @using Assigment_1.Data
+@using System.Threading
 @namespace LoginComponent
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
@@ -32,9 +33,10 @@
         try
         {
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+            //Thread.Sleep(10);
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/fetchData");
+            NavigationManager.NavigateTo("/fetchdata");
         }
         catch (Exception e)
         {
