@@ -32,6 +32,7 @@
         errorMessage = "";
         try
         {
+            
             ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
             //Thread.Sleep(10);
             username = "";
