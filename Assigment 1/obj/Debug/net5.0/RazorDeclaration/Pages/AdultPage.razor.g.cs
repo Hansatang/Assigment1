@@ -128,6 +128,7 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("AdultPage");
         secondaryClass = "hidden";
         mainClass = "";
         {

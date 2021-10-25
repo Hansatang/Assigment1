@@ -13,4 +13,9 @@
 </AuthorizeView>
 
 @code {
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Security");
+    }
 }

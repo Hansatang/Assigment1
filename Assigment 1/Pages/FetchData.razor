@@ -76,19 +76,20 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("FetchData");
         base.OnInitialized();
+        
         var user = (await AuthStat).User;
         CreatePie();
-        if (!user.Identity.IsAuthenticated)
+        if (user.Identity.IsAuthenticated)
         {
-            NavigationManager.NavigateTo($"/Login");
+            Adults = await CloudAdultInterface.GetAdultAsync();
+            AdultsShown = Adults;
+            PopulatePie();
         }
         else
         {
-            Adults = await CloudAdultInterface.GetAdultAsync();
-
-            AdultsShown = Adults;
-            PopulatePie();
+            NavigationManager.NavigateTo($"/Login");
         }
     }
 

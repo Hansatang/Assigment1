@@ -130,6 +130,7 @@ using Models;
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("Add New");
         Adults = await CloudAdultInterface.GetAdultAsync();
     }
 

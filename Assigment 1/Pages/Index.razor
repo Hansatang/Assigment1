@@ -3,6 +3,23 @@
 @inject NavigationManager NavigationManager;
 
 
-<div class="container p-3 my-3">
-    <h1>Hello, please log in</h1>
-</div>
+<AuthorizeView>
+    <NotAuthorized>
+     <div class="container p-3 my-3">
+         <h1>Hello, please log in</h1>
+     </div>
+    </NotAuthorized>
+    <Authorized>
+       <div class="container p-3 my-3">
+               <h1>Hello @context.User.Identity.Name</h1>
+           </div>
+    </Authorized>
+</AuthorizeView>
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Index");
+    }
+}

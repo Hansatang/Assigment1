@@ -121,6 +121,12 @@ using System.Collections;
 #line 35 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Register.razor"
        
 
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Register");
+    }
+    
+    
     public ArrayList SecurityLevels = new()
     {
         1, 2, 3, 4, 5

@@ -51,6 +51,7 @@ a, .btn-link {
 
 #block_container {
     display: flex;
+    align-items: center;
     justify-content: center;
 }
 
@@ -60,5 +61,9 @@ a, .btn-link {
 
 .onHoverChange:hover{
     background: red;
+}
+
+.centeredLabel{
+    margin-bottom: 0;
 }
 

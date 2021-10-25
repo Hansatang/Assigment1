@@ -11,18 +11,17 @@ namespace Assigment_1.Data
     public class CloudUserService : ICloudUserService
     {
         private string uri = "https://localhost:5003";
-        private readonly HttpClient client;
-
-        public CloudUserService()
-        {
-            client = new HttpClient();
-        }
-
+      
 
         public async Task<User> ValidateUser(string userName, string password)
         {
-            Task<string> stringAsync = client.GetStringAsync(uri + $"/users?userName={userName}&password={password}");
-            string message = await stringAsync;
+            using HttpClient client = new HttpClient();
+            HttpResponseMessage responseMessage = await client.GetAsync(uri + $"/users?userName={userName}&password={password}");
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(@"Error : (responseMessage.Status), (responseMessage.ReasonPhrase");
+            }
+            string message = await responseMessage.Content.ReadAsStringAsync();
             User result = JsonSerializer.Deserialize<User>(message);
             if (result == null)
             {
@@ -39,11 +38,16 @@ namespace Assigment_1.Data
 
         public async Task Save(User user)
         {
+            using HttpClient client = new HttpClient();
             string userAsJson = JsonSerializer.Serialize(user);
             HttpContent content = new StringContent(userAsJson,
                 Encoding.UTF8,
                 "application/json");
-            await client.PostAsync(uri + "/users", content);
+            HttpResponseMessage responseMessage = await client.PostAsync(uri + "/users", content);
+            if (!responseMessage.IsSuccessStatusCode)
+            {
+                throw new Exception(@"Error : {responseMessage.Status}, {responseMessage.ReasonPhrase}");
+            }
         }
     }
 }

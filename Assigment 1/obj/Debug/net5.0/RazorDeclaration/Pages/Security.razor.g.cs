@@ -90,6 +90,18 @@ using Assigment_1.Shared;
         {
         }
         #pragma warning restore 1998
+#nullable restore
+#line 15 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Security.razor"
+       
+    
+    protected override async Task OnInitializedAsync()
+    {
+        Console.WriteLine("Security");
+    }
+
+#line default
+#line hidden
+#nullable disable
         [global::Microsoft.AspNetCore.Components.InjectAttribute] private AuthenticationStateProvider AuthenticationStateProvider { get; set; }
     }
 }
