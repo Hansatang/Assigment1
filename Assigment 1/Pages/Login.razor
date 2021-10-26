@@ -7,9 +7,9 @@
 <AuthorizeView>
     <NotAuthorized>
         <div id="block_container">
-             <label class="centeredLabel">User name:</label>
+             <label >User name:</label>
                 <input type="text" placeholder="user name" @bind-value="username"/>
-                <label class="centeredLabel">Password:</label>
+                <label >Password:</label>
                 <input type="password" placeholder="password" @bind-value="password"/>
                 <div style="color:red">@errorMessage</div>
                 <input type="submit" value="Login" @onclick="PerformLogin">
@@ -17,9 +17,7 @@
         </div>
     </NotAuthorized>
     <Authorized>
-       
-            <input type="submit" value="Log out, @context.User.Identity.Name" @onclick="PerformLogout">
-      
+        <input type="submit" value="Log out, @context.User.Identity.Name" @onclick="PerformLogout">
     </Authorized>
 </AuthorizeView>
 
@@ -62,6 +60,7 @@
         }
         catch (Exception e)
         {
+            errorMessage = e.Message;
         }
     }
 

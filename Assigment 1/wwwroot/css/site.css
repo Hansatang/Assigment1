@@ -63,7 +63,7 @@ a, .btn-link {
     background: red;
 }
 
-.centeredLabel{
+#block_container> label{
     margin-bottom: 0;
 }
 
