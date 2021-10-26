@@ -9,4 +9,8 @@
       <PackageReference Include="ChartJs.Blazor.Fork" Version="2.0.2" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="wwwroot\css\custom" />
+    </ItemGroup>
+
 </Project>

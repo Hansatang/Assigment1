@@ -31,8 +31,8 @@ namespace Assigment_1
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddScoped<ICloudAdultInterface, CloudAdultService>();
-           services.AddScoped<ICloudUserService, CloudUserService>();
-           services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
+            services.AddScoped<ICloudUserService, CloudUserService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
             services.AddAuthorization(options =>
             {

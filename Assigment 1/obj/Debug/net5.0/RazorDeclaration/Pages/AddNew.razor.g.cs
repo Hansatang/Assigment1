@@ -112,7 +112,7 @@ using Models;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 63 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
+#line 60 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\AddNew.razor"
        
     public string ErrorMessage { get; set; }
     public IList<Adult> Adults { get; set; }
