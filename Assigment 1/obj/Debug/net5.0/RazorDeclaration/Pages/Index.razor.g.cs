@@ -91,7 +91,7 @@ using Assigment_1.Shared;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 20 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Index.razor"
+#line 21 "C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\Pages\Index.razor"
  
     protected override async Task OnInitializedAsync()
     {

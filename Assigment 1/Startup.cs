@@ -30,8 +30,7 @@ namespace Assigment_1
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddScoped<IFamilyService, FamilyService>();
-           services.AddScoped<ICloudAdultInterface, CloudAdultService>();
+            services.AddScoped<ICloudAdultInterface, CloudAdultService>();
            services.AddScoped<ICloudUserService, CloudUserService>();
            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 

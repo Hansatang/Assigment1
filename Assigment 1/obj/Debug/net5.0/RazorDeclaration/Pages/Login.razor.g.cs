@@ -116,9 +116,9 @@ using Assigment_1.Data;
         try
         {
             await ((CustomAuthenticationStateProvider) AuthenticationStateProvider).ValidateLogin(username, password);
+           // NavigationManager.NavigateTo("/fetchdata");
             username = "";
             password = "";
-            NavigationManager.NavigateTo("/fetchdata");
         }
         catch (Exception e)
         {
