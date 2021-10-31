@@ -178,9 +178,9 @@ using Models;
         }
     }
 
-    public bool Check(string s)
+    public bool Check(string stringToCheck)
     {
-        return string.IsNullOrEmpty(s) ? true : false;
+        return string.IsNullOrEmpty(stringToCheck) ? true : false;
     }
 
 
