@@ -158,6 +158,7 @@ using Models;
             {
                 Job job = new Job
                 {
+                    Id= Adults.Count,
                     JobTitle = JobTitle,
                     Salary = Int32.Parse(Salary)
                 };
@@ -167,6 +168,7 @@ using Models;
             {
                 Job job = new Job
                 {
+                    
                     JobTitle = "Unemployed",
                     Salary = 0
                 };
