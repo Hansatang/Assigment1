@@ -140,3 +140,71 @@ C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\Newtonsoft
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\AddNew.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\obj\Debug\net5.0\Razor\Pages\AddNew.razor.g.cs
 C:\Users\krzys\RiderProjects\Assigment 1\Assigment 1\bin\Debug\net5.0\users.json
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.csproj.AssemblyReference.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.GeneratedMSBuildEditorConfig.editorconfig
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.AssemblyInfoInputs.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.AssemblyInfo.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.csproj.CoreCompileInputs.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.MvcApplicationPartsAssemblyInfo.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorComponent.input.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\App.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\AddNew.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\AdultPage.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\FetchData.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Index.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Login.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Register.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Pages\Security.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Shared\SurveyPrompt.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\_Imports.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Shared\MainLayout.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Shared\NavMenu.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorComponent.output.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\RazorDeclaration\Assigment 1.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.TagHelpers.input.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.TagHelpers.output.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorCoreGenerate.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\App.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\AddNew.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\AdultPage.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\FetchData.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Index.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Login.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Register.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Security.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Shared\SurveyPrompt.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\_Imports.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Shared\MainLayout.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Shared\NavMenu.razor.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\Error.cshtml.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Razor\Pages\_Host.cshtml.g.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorAssemblyInfo.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorAssemblyInfo.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\staticwebassets\Assigment 1.StaticWebAssets.Manifest.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\staticwebassets\Assigment 1.StaticWebAssets.xml
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\scopedcss\Shared\MainLayout.razor.rz.scp.css
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\scopedcss\Shared\NavMenu.razor.rz.scp.css
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\scopedcss\bundle\Assigment 1.styles.css
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\scopedcss\projectbundle\Assigment 1.bundle.scp.css
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorTargetAssemblyInfo.cache
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.RazorTargetAssemblyInfo.cs
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\ref\Assigment 1.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.pdb
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\appsettings.Development.json
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\appsettings.json
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.StaticWebAssets.xml
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.exe
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.deps.json
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.runtimeconfig.json
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.runtimeconfig.dev.json
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\ref\Assigment 1.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.pdb
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.Views.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Assigment 1.Views.pdb
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\ChartJs.Blazor.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\bin\Debug\net5.0\Newtonsoft.Json.dll
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.Views.pdb
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.csproj.CopyComplete
+D:\Onedrive\OneDrive - ViaUC\Dokumenter\GitHub\Assigment1\Assigment 1\obj\Debug\net5.0\Assigment 1.genruntimeconfig.cache

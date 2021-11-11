@@ -23,14 +23,15 @@ namespace Assigment_1.Data
             }
             string message = await responseMessage.Content.ReadAsStringAsync();
             User result = JsonSerializer.Deserialize<User>(message);
+            
+            if (!result.Password.Equals(password) && result.UserName.Equals(userName))
+            {
+                throw new Exception("Incorrect password");
+            }
+            
             if (result == null)
             {
                 throw new Exception("User not found");
-            }
-
-            if (!result.Password.Equals(password))
-            {
-                throw new Exception("Incorrect password");
             }
 
             return result;

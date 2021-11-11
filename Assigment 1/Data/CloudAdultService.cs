@@ -15,15 +15,21 @@ namespace Assigment_1.Data
 
         public async Task<IList<Adult>> GetAdultAsync()
         {
+            Console.WriteLine("A1");
             using HttpClient client = new HttpClient();
+            Console.WriteLine("A2");
             HttpResponseMessage responseMessage = await client.GetAsync(uri + "/adult");
+            Console.WriteLine("A3");
             if (!responseMessage.IsSuccessStatusCode)
             {
+                Console.WriteLine("A4");
                 throw new Exception(@"Error : (responseMessage.Status), (responseMessage.ReasonPhrase");
             }
-
+            Console.WriteLine("A5");
             string message = await responseMessage.Content.ReadAsStringAsync();
+            Console.WriteLine("A6");
             List<Adult> result = JsonSerializer.Deserialize<List<Adult>>(message);
+            Console.WriteLine("A7");
             return result;
         }
 
